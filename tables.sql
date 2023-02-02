@@ -25,12 +25,12 @@ CREATE TABLE [UserType] (
 
 CREATE TABLE [GhostType] (
   [Id] int NOT NULL PRIMARY KEY IDENTITY(1, 1),
-  [Type] nvarchar(255) NOT NULL
-)
+  [Type] nvarchar(255) 
+);
 
 CREATE TABLE [UserProfile] (
   [Id] int NOT NULL PRIMARY KEY IDENTITY(1, 1),
-  [FirebaseUserId] nvarchar(255) UNIQUE NOT NULL,
+  [FirebaseUserId] nvarchar(255) NOT NULL,
   [UserTypeId] int NOT NULL,
   [GhostTypeId] int,
   [Email] nvarchar(255) NOT NULL,
@@ -41,7 +41,6 @@ CREATE TABLE [UserProfile] (
   CONSTRAINT FK_UserProfile_GhostType FOREIGN KEY (GhostTypeId) REFERENCES GhostType(Id),
   
 );
-
 
 
 CREATE TABLE [House] (
@@ -60,6 +59,7 @@ CREATE TABLE [Haunt] (
   [Notes] nvarchar(255), 
   CONSTRAINT FK_Haunt_UserProfile FOREIGN KEY (UserProfileId) REFERENCES [UserProfile](Id)
 );
+
 
 
 
