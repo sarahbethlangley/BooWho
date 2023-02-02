@@ -8,6 +8,8 @@ namespace BooWho.Models
         public int Id { get; set; }
 
         public string Type { get; set; }
+        public static int ADMIN_TYPE_ID => 1;
+        public static int USER_TYPE_ID => 2;
 
     }
 }
