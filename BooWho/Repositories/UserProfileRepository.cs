@@ -17,7 +17,7 @@ namespace BooWho.Repositories
                 {
                     cmd.CommandText = @"
                         SELECT up.Id, Up.FirebaseUserId, up.Name AS UserProfileName, up.Email, up.UserTypeId,
-                               ut.Name AS UserTypeName
+                               ut.Type AS UserTypeType
                           FROM UserProfile up
                                LEFT JOIN UserType ut on up.UserTypeId = ut.Id
                          WHERE FirebaseUserId = @FirebaseuserId";
@@ -39,7 +39,7 @@ namespace BooWho.Repositories
                             UserType = new UserType()
                             {
                                 Id = DbUtils.GetInt(reader, "UserTypeId"),
-                                Name = DbUtils.GetString(reader, "UserTypeName"),
+                                Type = DbUtils.GetString(reader, "UserTypeType"),
                             }
                         };
                     }

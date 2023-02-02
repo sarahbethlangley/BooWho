@@ -14,61 +14,52 @@ GO
 
 DROP TABLE IF EXISTS Haunt;
 DROP TABLE IF EXISTS House;
+DROP TABLE IF EXISTS UserProfile;
 DROP TABLE IF EXISTS GhostType;
 DROP TABLE IF EXISTS UserType;
-DROP TABLE IF EXISTS UserProfile;
+
+CREATE TABLE [UserType] (
+  [Id] int NOT NULL PRIMARY KEY IDENTITY(1, 1),
+  [Type] nvarchar(255) NOT NULL
+);
+
+CREATE TABLE [GhostType] (
+  [Id] int NOT NULL PRIMARY KEY IDENTITY(1, 1),
+  [Type] nvarchar(255) NOT NULL
+)
 
 CREATE TABLE [UserProfile] (
-  [Id] int PRIMARY KEY IDENTITY(1, 1),
+  [Id] int NOT NULL PRIMARY KEY IDENTITY(1, 1),
   [FirebaseUserId] nvarchar(255) UNIQUE NOT NULL,
   [UserTypeId] int NOT NULL,
   [GhostTypeId] int,
   [Email] nvarchar(255) NOT NULL,
   [Name] nvarchar(255) NOT NULL,
   [Hobbies] nvarchar(255),
-  [ImageUrl] nvarchar(255) 
-)
-GO
+  [ImageUrl] nvarchar(255), 
+  CONSTRAINT FK_UserProfile_UserType FOREIGN KEY (UserTypeId) REFERENCES [UserType](Id),
+  CONSTRAINT FK_UserProfile_GhostType FOREIGN KEY (GhostTypeId) REFERENCES GhostType(Id),
+  
+);
 
-CREATE TABLE [UserType] (
-  [Id] int PRIMARY KEY IDENTITY(1, 1),
-  [Type] nvarchar(255) NOT NULL
-)
-GO
 
-CREATE TABLE [GhostType] (
-  [Id] int PRIMARY KEY IDENTITY(1, 1),
-  [Type] nvarchar(255) NOT NULL
-)
-GO
 
 CREATE TABLE [House] (
-  [Id] int PRIMARY KEY IDENTITY(1, 1),
-  [FamilyUserProfileId] int NOT NULL,
+  [Id] int NOT NULL PRIMARY KEY IDENTITY(1, 1),
+  [UserProfileId] int NOT NULL,
   [Address] nvarchar(255) NOT NULL,
-  [ImageUrl] nvarchar(255) 
-)
-GO
+  [ImageUrl] nvarchar(255), 
+  CONSTRAINT FK_House_UserProfile FOREIGN KEY (UserProfileId) REFERENCES [UserProfile](Id)
+);
+
 
 CREATE TABLE [Haunt] (
-  [Id] int PRIMARY KEY IDENTITY(1, 1),
-  [GhostUserProfileId] int NOT NULL,
+  [Id] int NOT NULL PRIMARY KEY IDENTITY(1, 1),
+  [UserProfileId] int NOT NULL,
   [HouseId] int NOT NULL,
-  [Notes] nvarchar(255) 
-)
-GO
+  [Notes] nvarchar(255), 
+  CONSTRAINT FK_Haunt_UserProfile FOREIGN KEY (UserProfileId) REFERENCES [UserProfile](Id)
+);
 
-ALTER TABLE [UserProfile] ADD FOREIGN KEY ([UserTypeId]) REFERENCES [UserType] ([Id])
-GO
 
-ALTER TABLE [UserProfile] ADD FOREIGN KEY ([GhostTypeId]) REFERENCES [GhostType] ([Id])
-GO
 
-ALTER TABLE [House] ADD FOREIGN KEY ([FamilyUserProfileId]) REFERENCES [UserProfile] ([Id])
-GO
-
-ALTER TABLE [Haunt] ADD FOREIGN KEY ([GhostUserProfileId]) REFERENCES [UserProfile] ([Id])
-GO
-
-ALTER TABLE [Haunt] ADD FOREIGN KEY ([HouseId]) REFERENCES [House] ([Id])
-GO
