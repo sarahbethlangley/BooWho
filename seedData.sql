@@ -25,7 +25,7 @@ INSERT INTO UserProfile ([FirebaseUserId], [UserTypeId], [GhostTypeId], [Email],
 INSERT INTO UserProfile ([FirebaseUserId], [UserTypeId], [GhostTypeId], [Email], [Name], [Hobbies], [ImageUrl]) values ('Sqa2rJI99SQOvysEqOGbBn3xe2z1', 2, 6, 'lois@ghost.com', 'Lost Lois', 'going on hikes in the wooods', '');
 INSERT INTO UserProfile ([FirebaseUserId], [UserTypeId], [GhostTypeId], [Email], [Name], [Hobbies], [ImageUrl]) values ('lL5JvaKaEzQaV2VUfLgvczKhS9X2', 2, 8, 'sally@ghost.com', 'Sally Screams', 'singing', '');
 INSERT INTO UserProfile ([FirebaseUserId], [UserTypeId], [GhostTypeId], [Email], [Name], [Hobbies], [ImageUrl]) values ('c9fIRNCIn6d1RIr3mz6rdeA2KSb2', 2, 7, 'patrick@ghost.com', 'Patrick', 'no Im PaTrIcK', '');
-INSERT INTO UserProfile ([FirebaseUserId], [UserTypeId], [GhostTypeId], [Email], [Name], [Hobbies], [ImageUrl]) values ('HilBpZkxgVZ42utq4RaKOnO2vkf1', 2, 2, 'barry@ghost.com', 'Barry No Britches', 'nudist camps', '');
+INSERT INTO UserProfile ([FirebaseUserId], [UserTypeId], [GhostTypeId], [Email], [Name], [Hobbies], [ImageUrl]) values ('HilBpZkxgVZ42utq4RaKOnO2vkf1', 2, 2, 'barry@ghost.com', 'Barry No Britches', 'nudist camps, wine tastings', '');
 INSERT INTO UserProfile ([FirebaseUserId], [UserTypeId], [GhostTypeId], [Email], [Name], [Hobbies], [ImageUrl]) values ('1kshJtMCDVXHHvIqwWGS8PMVPn13', 2, 6, 'agnes@ghost.com', 'Agnes', 'haunting sewing rooms', '');
 
 
