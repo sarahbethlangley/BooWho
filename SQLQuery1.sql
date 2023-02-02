@@ -1,1 +1,1 @@
-﻿SELECT * FROM GhostType;
+﻿SELECT * FROM UserProfile;
