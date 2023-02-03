@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import { Button, Form, FormGroup, Label, Input } from "reactstrap";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useNavigate } from "react";
 import { register } from "../modules/authManager";
 
 export default function Register() {
@@ -22,45 +20,45 @@ export default function Register() {
   };
 
   return (
-    <Form onSubmit={registerClick}>
+    <form onSubmit={registerClick}>
       <fieldset>
-        <FormGroup>
-          <Label htmlFor="name">Name</Label>
-          <Input
+        <div>
+          <label htmlFor="name">Name</label>
+          <input
             id="name"
             type="text"
             autoFocus
             onChange={(e) => setName(e.target.value)}
           />
-        </FormGroup>
-        <FormGroup>
-          <Label for="email">Email</Label>
-          <Input
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input
             id="email"
             type="text"
             onChange={(e) => setEmail(e.target.value)}
           />
-        </FormGroup>
-        <FormGroup>
-          <Label for="password">Password</Label>
-          <Input
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input
             id="password"
             type="password"
             onChange={(e) => setPassword(e.target.value)}
           />
-        </FormGroup>
-        <FormGroup>
-          <Label for="confirmPassword">Confirm Password</Label>
-          <Input
+        </div>
+        <div>
+          <label for="confirmPassword">Confirm Password</label>
+          <input
             id="confirmPassword"
             type="password"
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
-        </FormGroup>
-        <FormGroup>
-          <Button>Register</Button>
-        </FormGroup>
+        </div>
+        <div>
+          <button>Register</button>
+        </div>
       </fieldset>
-    </Form>
+    </form>
   );
 }
