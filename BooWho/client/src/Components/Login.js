@@ -31,21 +31,21 @@ export default function Login() {
         <div className="w-full max-w-md space-y-8">
           <div>
             <img
-              className="mx-auto h-12 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt="Your Company"
+              className="mx-auto h-64 w-auto"
+              src={require("../assetts/logo.png")}
+              alt="BooWho"
             />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
               Sign in to your account
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
-              Or{" "}
-              <a
-                href="#"
+              Or{"  "}
+              <div
+                href="Register.js"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
-                start your 14-day free trial
-              </a>
+                <Link to="register">register now</Link>
+              </div>
             </p>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
@@ -83,23 +83,6 @@ export default function Login() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
-                  Remember me
-                </label>
-              </div>
-            </div>
-
             <div>
               <button
                 type="submit"
@@ -114,14 +97,6 @@ export default function Login() {
                 </span>
                 Sign in
               </button>
-            </div>
-            <div className="text-sm">
-              <a
-                href="Register.js"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
-              >
-                Not Registered Yet?
-              </a>
             </div>
           </form>
         </div>
