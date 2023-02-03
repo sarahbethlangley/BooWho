@@ -1,14 +1,5 @@
 import React, { useState } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from "reactstrap";
 import { logout } from "../modules/authManager";
 
 export default function Header({ isLoggedIn }) {
@@ -17,21 +8,21 @@ export default function Header({ isLoggedIn }) {
 
   return (
     <div>
-      <Navbar color="dark" dark expand="md">
+      <nav color="dark" dark expand="md">
         <NavbarBrand tag={RRNavLink} to="/">
           Grace Hopper Wisdom
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <div className="mr-auto" navbar>
             {isLoggedIn && (
               <>
-                <NavItem>
-                  <NavLink tag={RRNavLink} to="/add">
+                <div>
+                  <Link tag={RRNavLink} to="/add">
                     Add Quote
-                  </NavLink>
-                </NavItem>
-                <NavItem>
+                  </Link>
+                </div>
+                <div>
                   <a
                     aria-current="page"
                     className="nav-link"
@@ -40,24 +31,24 @@ export default function Header({ isLoggedIn }) {
                   >
                     Logout
                   </a>
-                </NavItem>
+                </div>
               </>
             )}
             {!isLoggedIn && (
               <>
-                <NavItem>
-                  <NavLink tag={RRNavLink} to="/login">
+                <div>
+                  <Link tag={RRNavLink} to="/login">
                     Login
-                  </NavLink>
-                </NavItem>
-                <NavItem>
-                  <NavLink tag={RRNavLink} to="/register">
+                  </Link>
+                </div>
+                <div>
+                  <Link tag={RRNavLink} to="/register">
                     Register
-                  </NavLink>
-                </NavItem>
+                  </Link>
+                </div>
               </>
             )}
-          </Nav>
+          </div>
           <Nav navbar>
             <NavItem>
               <a
