@@ -16,12 +16,13 @@ function App() {
   //  Then it will be set to true or false by the "onLoginStatusChange" function
   if (isLoggedIn === null) {
     // Until we know whether or not the user is logged in or not, just show a spinner
-    return <div className="app-spinner dark" />;
+    return <div className="text-lg font-henny" />;
   }
 
   return (
     <div className="App">
       <BrowserRouter>
+        <Header isLoggedIn={isLoggedIn} />
         <ApplicationViews isLoggedIn={isLoggedIn} />
       </BrowserRouter>
     </div>
