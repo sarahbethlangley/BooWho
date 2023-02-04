@@ -1,5 +1,6 @@
-import React, { useState, useNavigate } from "react";
-import { register } from "../modules/authManager";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { register, login } from "../modules/authManager";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -27,7 +28,6 @@ export default function Register() {
           <input
             id="name"
             type="text"
-            autoFocus
             onChange={(e) => setName(e.target.value)}
           />
         </div>
