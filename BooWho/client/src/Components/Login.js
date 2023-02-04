@@ -13,138 +13,114 @@ export default function Login() {
   const loginSubmit = (e) => {
     e.preventDefault();
     login(email, password)
-      .then(() => navigate("/"))
-      .catch(() => alert("Login Failed"));
+      .then(() => navigate("/boohome"))
+      .catch(() => alert("Login Failed, Boo"));
   };
 
   return (
     <>
-      {/*
-        This example requires updating your template:
-
-        ```
-        <html class="h-full bg-gray-50">
-        <body class="h-full">
-        ```
-      */}
-      <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-8">
-          <div>
-            <img
-              className="mx-auto h-64 w-auto"
-              src={require("../assetts/logo.png")}
-              alt="BooWho"
+      <div className="isolate bg-spooky">
+        <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
+          <svg
+            className="relative left-[calc(50%-11rem)] -z-10 h-[21.1875rem] max-w-none -translate-x-1/2 rotate-[30deg] sm:left-[calc(50%-30rem)] sm:h-[42.375rem]"
+            viewBox="0 0 1155 678"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fill="url(#45de2b6b-92d5-4d68-a6a0-9b9b2abad533)"
+              fillOpacity=".3"
+              d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"
             />
-            <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
-              Sign in to your account
-            </h2>
-            <p className="mt-2 text-center text-sm text-gray-600">
-              Or{"  "}
-              <div
-                href="Register.js"
-                className="font-medium text-indigo-600 hover:text-indigo-500"
+            <defs>
+              <linearGradient
+                id="45de2b6b-92d5-4d68-a6a0-9b9b2abad533"
+                x1="1155.49"
+                x2="-78.208"
+                y1=".177"
+                y2="474.645"
+                gradientUnits="userSpaceOnUse"
               >
-                <Link to="register">register now</Link>
-              </div>
-            </p>
-          </div>
-          <form className="mt-8 space-y-6" action="#" method="POST">
-            <input type="hidden" name="remember" defaultValue="true" />
-            <div className="-space-y-px rounded-md shadow-sm">
-              <div>
-                <label htmlFor="email-address" className="sr-only">
-                  Email address
-                </label>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Email address"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </div>
-            </div>
-
+                <stop stopColor="#9089FC" />
+                <stop offset={1} stopColor="#FF80B5" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+          <div className="w-full max-w-md space-y-8">
             <div>
-              <button
-                type="submit"
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                onClick={loginSubmit}
-              >
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                  <LockClosedIcon
-                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
-                    aria-hidden="true"
-                  />
-                </span>
-                Sign in
-              </button>
+              <img
+                className="mx-auto h-64 w-auto"
+                src={require("../assetts/logo.png")}
+                alt="BooWho"
+              />
+              <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+                Sign in to your account
+              </h2>
+              <p className="mt-2 text-center text-sm text-gray-600">
+                Or{"  "}
+                <div
+                  href="#!"
+                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                >
+                  <Link to="register">register now</Link>
+                </div>
+              </p>
             </div>
-          </form>
+            <form className="mt-8 space-y-6" action="#" method="POST">
+              <input type="hidden" name="remember" defaultValue="true" />
+              <div className="-space-y-px rounded-md shadow-sm">
+                <div>
+                  <label htmlFor="email-address" className="sr-only">
+                    Email address
+                  </label>
+                  <input
+                    id="email-address"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    required
+                    className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    placeholder="Email address"
+                    onChange={(e) => setEmail(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password" className="sr-only">
+                    Password
+                  </label>
+                  <input
+                    id="password"
+                    name="password"
+                    type="password"
+                    autoComplete="current-password"
+                    required
+                    className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                    placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                  onClick={loginSubmit}
+                >
+                  <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                    <LockClosedIcon
+                      className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                      aria-hidden="true"
+                    />
+                  </span>
+                  Sign in
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </>
   );
 }
-
-// export default function Login() {
-//   let navigate = useNavigate();
-
-//   const [email, setEmail] = useState();
-//   const [password, setPassword] = useState();
-
-//   const loginSubmit = (e) => {
-//     e.preventDefault();
-//     login(email, password)
-//       .then(() => navigate("/"))
-//       .catch(() => alert("Login Failed"));
-//   };
-
-//   return (
-//     <form>
-//       <fieldset>
-//         <div>
-//           <label htmlFor="email">Email</label>
-//           <input
-//             id="email"
-//             type="text"
-//             autoFocus
-//             onChange={(e) => setEmail(e.target.value)}
-//           />
-//         </div>
-//         <div>
-//           <label htmlFor="password">Password</label>
-//           <input
-//             id="password"
-//             type="password"
-//             onChange={(e) => setPassword(e.target.value)}
-//           />
-//         </div>
-//         <div>
-//           <button onClick={loginSubmit}>Login</button>
-//         </div>
-//         <em>
-//           Not registered? <Link to="register">Register</Link>
-//         </em>
-//       </fieldset>
-//     </form>
-//   );
-// }
