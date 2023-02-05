@@ -15,6 +15,10 @@ export default function Register() {
     navigate("/boowho");
   };
 
+  const handleLoginNavigate = () => {
+    navigate("/login");
+  };
+
   const registerClick = (e) => {
     e.preventDefault();
     if (password && password !== confirmPassword) {
@@ -54,6 +58,13 @@ export default function Register() {
             </defs>
           </svg>
         </div>
+        <div className="pt-1 float-right">
+          <img
+            className="h-auto w-auto object-center"
+            src={require("../assetts/ghostgirl.png")}
+            alt=""
+          />
+        </div>
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-md space-y-8">
             <div>
@@ -65,11 +76,28 @@ export default function Register() {
               <h2 className="mt-6 text-center text-4xl font-frijole tracking-tight text-white">
                 register a new account
               </h2>
+              <p className="mt-2 text-center text-sm text-white">
+                <div
+                  href="#!"
+                  className="text-md font-medium text-yeller hover:text-white"
+                >
+                  <button
+                    className="pt-10 text-lg font-cutive leading-6 text-yeller"
+                    onClick={(event) => {
+                      handleLoginNavigate(event);
+                    }}
+                  >
+                    {" "}
+                    or sign in if you already have one
+                    <span aria-hidden="true">&rarr;</span>
+                  </button>
+                </div>
+              </p>
             </div>
             <form className="mt-8 space-y-6" action="#" method="POST">
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="-space-y-px rounded-md shadow-sm">
-                <div className="pt-5">
+                <div className="pt-3">
                   <label htmlFor="name" className="sr-only">
                     Name
                   </label>
