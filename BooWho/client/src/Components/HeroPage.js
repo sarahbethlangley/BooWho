@@ -4,8 +4,7 @@ import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Why BooWho", href: "#" },
-  { name: "Who To Boo", href: "#" },
+  { name: "Who To Boo?", href: "#" },
   { name: "How To Boo It", href: "#" },
   { name: "What To Boo Now", href: "#" },
 ];
