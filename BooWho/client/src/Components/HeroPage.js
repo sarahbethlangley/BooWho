@@ -74,13 +74,13 @@ export default function HeroPage() {
           </div>
           <div className="hidden lg:flex lg:gap-x-12">
             {navigation.map((item) => (
-              <a
+              <button
                 key={item.name}
                 href={item.href}
                 className="text-lg font-cutive leading-6 text-yeller"
               >
                 {item.name}
-              </a>
+              </button>
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
