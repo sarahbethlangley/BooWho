@@ -10,6 +10,10 @@ export default function Login() {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
+  const handleNavigate = () => {
+    navigate("/register");
+  };
+
   const loginSubmit = (e) => {
     e.preventDefault();
     login(email, password)
@@ -46,24 +50,33 @@ export default function Login() {
             </defs>
           </svg>
         </div>
+
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-md space-y-8">
             <div>
               <img
                 className="mx-auto h-64 w-auto"
-                src={require("../assetts/logo.png")}
+                src={require("../assetts/twoboo.gif")}
                 alt="BooWho"
               />
-              <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+              <h2 className="mt-6 text-center text-4xl font-frijole tracking-tight text-white">
                 Sign in to your account
               </h2>
-              <p className="mt-2 text-center text-sm text-gray-600">
-                Or{"  "}
+              <p className="mt-2 text-center text-sm text-white">
                 <div
                   href="#!"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                  className="text-md font-medium text-yeller hover:text-white"
                 >
-                  <Link to="register">register now</Link>
+                  <button
+                    className="pt-10 text-lg font-cutive leading-6 text-yeller"
+                    onClick={(event) => {
+                      handleNavigate(event);
+                    }}
+                  >
+                    {" "}
+                    or register a new one
+                    <span aria-hidden="true">&rarr;</span>
+                  </button>
                 </div>
               </p>
             </div>
@@ -102,7 +115,7 @@ export default function Login() {
                 </div>
               </div>
 
-              <div>
+              <div className="pb-40">
                 <button
                   type="submit"
                   className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"

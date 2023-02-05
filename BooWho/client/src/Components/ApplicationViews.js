@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import HauntList from "./Haunt/HauntList";
-import HauntForm from "./Haunt/HauntForm";
+import HauntForm from "./Haunt/HauntAddForm";
 import HomePage from "./HomePage";
 import HeroPage from "./HeroPage";
 import Login from "./Login";

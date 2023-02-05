@@ -22,7 +22,6 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header isLoggedIn={isLoggedIn} />
         <ApplicationViews isLoggedIn={isLoggedIn} />
       </BrowserRouter>
     </div>

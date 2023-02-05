@@ -8,6 +8,7 @@ module.exports = {
         creepy: "#443166",
         pow: "#fa02f2",
         bubblegum: "#f5aef3",
+        yeller: "#F5FE87",
       },
 
       fontFamily: {
