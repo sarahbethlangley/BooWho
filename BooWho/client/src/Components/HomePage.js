@@ -6,10 +6,10 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { logout } from "../modules/authManager";
 
 const navigation = [
-  { name: "Houses", href: "#" },
-  { name: "Families", href: "#" },
-  { name: "MyHaunts", href: "#" },
+  { name: "Active Haunts", href: "#" },
+  { name: "Haunted Houses", href: "#" },
   { name: "Social", href: "#" },
+  { name: "My Profile", href: "#" },
 ];
 
 export default function HomePage() {
@@ -152,21 +152,23 @@ export default function HomePage() {
         <div>
           <div className="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
             <div className="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
-              <div className="sm:max-w-lg">
-                <h1 className="text-4xl font-fijole leading-8 text-white sm:text-6xl">
-                  FINDING A HOME TO HAUNT CAN BE A SCREAM
-                </h1>
-                <p className="mt-4 text-xl text-gray-300">
-                  whether you're looking for your forever home or prefer to keep
-                  things open
-                </p>
-                <h3 className="mt-4 text-xl text-yeller">
-                  GOING ON HAUNTS IS FUN!
-                </h3>
-                <p className="mt-4 text-xl text-gray-300">
-                  your Haunt can last as long as you want - just a few days or
-                  generations
-                </p>
+              <div className="text-center">
+                <div className="sm:max-w-lg">
+                  <h1 className="text-4xl font-fijole leading-8 text-white sm:text-6xl">
+                    A HAUNTING WE WILL GO
+                  </h1>
+                  <p className="mt-4 text-xl text-gray-300">
+                    Whether you're looking for your forever home or prefer to
+                    keep things open
+                  </p>
+                  <h3 className="mt-4 text-xl text-yeller">
+                    Going on Haunts is fun
+                  </h3>
+                  <p className="mt-4 text-xl text-gray-300">
+                    Your Haunt can last as long as you want - just a few days or
+                    generations
+                  </p>
+                </div>
               </div>
 
               <div className="mt-10">
@@ -180,7 +182,7 @@ export default function HomePage() {
                       <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                         <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
                           <img
-                            src={require("../assetts/ahouses.jpg")}
+                            src={require("../assetts/cornfield.jpg")}
                             alt=""
                             className="h-full w-full object-cover object-center"
                           />
@@ -226,7 +228,7 @@ export default function HomePage() {
                         </div>
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
-                            src={require("../assetts/nice.jpg")}
+                            src={require("../assetts/window.jpg")}
                             alt=""
                             className="h-full w-full object-cover object-center"
                           />
@@ -262,24 +264,23 @@ export default function HomePage() {
             <div class="md:shrink-0">
               <img
                 class="h-48 w-full object-cover md:h-full md:w-48"
-                src={require("../assetts/ghostslove.gif")}
+                src={require("../assetts/agnes.png")}
                 alt="loving ghost"
               />
             </div>
             <div class="p-8">
               <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                You're gonna love it
+                You're welcome here
               </div>
               <a
                 href="#"
                 class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
               >
-                Incredible accommodation for your team
+                Our families want to meet you
               </a>
               <p class="mt-2 text-slate-500">
-                Looking to take your team away on a retreat to enjoy awesome
-                food and take in some sunshine? We have a list of places to do
-                just that.
+                No sage, no exorcisms, and no salt circles - we ensure every
+                family on BooWho?! wants their homes to be haunted
               </p>
             </div>
           </div>
@@ -291,24 +292,52 @@ export default function HomePage() {
             <div class="md:shrink-0">
               <img
                 class="h-48 w-full object-cover md:h-full md:w-48"
-                src={require("../assetts/ghostslove.gif")}
+                src={require("../assetts/ghostwater.jpg")}
                 alt="loving ghost"
               />
             </div>
             <div class="p-8">
               <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                Company retreats
+                You're gonna love it
               </div>
               <a
                 href="#"
                 class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
               >
-                Incredible accommodation for your team
+                Haunting opportunities are updated daily
               </a>
               <p class="mt-2 text-slate-500">
-                Looking to take your team away on a retreat to enjoy awesome
-                food and take in some sunshine? We have a list of places to do
-                just that.
+                As soon as a family lists their home on BooWho!?, their listing
+                is available for you to book a Haunt immediately
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="pt-16 pb-16">
+        <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+          <div class="md:flex">
+            <div class="md:shrink-0">
+              <img
+                class="h-48 w-full object-cover md:h-full md:w-48"
+                src={require("../assetts/ghosthome.gif")}
+                alt="loving ghost"
+              />
+            </div>
+            <div class="p-8">
+              <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                Connect with other ghosts
+              </div>
+              <a
+                href="#"
+                class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+              >
+                Don't let death stand in the way of friendship
+              </a>
+              <p class="mt-2 text-slate-500">
+                Not only does BooWho?! connect you with houses to haunt, we
+                connect you with other ghosts too. Make a new friend today and
+                go on a Haunt together.
               </p>
             </div>
           </div>

@@ -14,6 +14,10 @@ export default function Login() {
     navigate("/register");
   };
 
+  const handleHomeNavigate = () => {
+    navigate("/boowho");
+  };
+
   const loginSubmit = (e) => {
     e.preventDefault();
     login(email, password)
@@ -50,6 +54,13 @@ export default function Login() {
             </defs>
           </svg>
         </div>
+        <div className="pt-1 float-right">
+          <img
+            className="h-auto w-auto object-center"
+            src={require("../assetts/friendghost.jpg")}
+            alt=""
+          />
+        </div>
 
         <div className="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
           <div className="w-full max-w-md space-y-8">
@@ -60,7 +71,7 @@ export default function Login() {
                 alt="BooWho"
               />
               <h2 className="mt-6 text-center text-4xl font-frijole tracking-tight text-white">
-                Sign in to your account
+                sign in to your account
               </h2>
               <p className="mt-2 text-center text-sm text-white">
                 <div
@@ -129,6 +140,23 @@ export default function Login() {
                   </span>
                   Sign in
                 </button>
+                <p className="mt-2 text-center text-sm text-white">
+                  <div
+                    href="#!"
+                    className="text-md font-medium text-yeller hover:text-white"
+                  >
+                    <button
+                      className="pt-10 pb-10 text-lg font-cutive leading-6 text-yeller"
+                      onClick={(event) => {
+                        handleHomeNavigate(event);
+                      }}
+                    >
+                      {" "}
+                      take me back home
+                      <span aria-hidden="true">&rarr;</span>
+                    </button>
+                  </div>
+                </p>
               </div>
             </form>
           </div>

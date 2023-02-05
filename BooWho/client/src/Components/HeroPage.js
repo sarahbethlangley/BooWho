@@ -76,7 +76,7 @@ export default function HeroPage() {
               <button
                 key={item.name}
                 href={item.href}
-                className="text-lg font-cutive leading-6 text-yeller"
+                className="text-2xl font-cutive leading-6 text-yeller"
               >
                 {item.name}
               </button>
