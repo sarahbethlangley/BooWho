@@ -10,7 +10,7 @@ them through long-term and temporary haunting placements
 
  Everyday more spooks, ghouls, ghosts, and spirits are facing
  mounting homelessness in our community. At BooWho?!, we strive to
- protect housing rights for the paranomral by connecting them with
+ protect housing rights for the paranormal by connecting them with
  the right house and the right living people to share their homes,
  lives, - and afterlives - with
               
