@@ -1,12 +1,45 @@
 import { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import {
+  HomeIcon,
+  ChatBubbleBottomCenterTextIcon,
+  UserIcon,
+  FaceSmileIcon,
+} from "@heroicons/react/24/outline";
 
 const navigation = [
   { name: "Who To Boo?", href: "#" },
   { name: "How To Boo It", href: "#" },
   { name: "What To Boo Now", href: "#" },
+];
+
+const features = [
+  {
+    name: "Find a home",
+    description:
+      "Checkout our extensive listings of houses ready to be haunted or add yours now",
+    icon: HomeIcon,
+  },
+  {
+    name: "Connect with the living",
+    description:
+      "You don't need a Ouiji board to connect. Our families are waiting for you to say hi",
+    icon: UserIcon,
+  },
+  {
+    name: "No obligations",
+    description:
+      "For whatever reason, you can end a Haunt at any time - there are no obligations",
+    icon: FaceSmileIcon,
+  },
+  {
+    name: "Connect with the dead",
+    description:
+      "Connect with ghosts, ghouls, spirits, and spooks to find the perfect ghost for your house",
+    icon: ChatBubbleBottomCenterTextIcon,
+  },
 ];
 
 export default function HeroPage() {
@@ -59,7 +92,7 @@ export default function HeroPage() {
               <a href="#!" className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
                 <img
-                  className="h-36"
+                  className="h-20"
                   src={require("../assetts/navlogo.png")}
                   alt=""
                 />
@@ -107,7 +140,7 @@ export default function HeroPage() {
                 <a href="#" className="-m-1.5 p-1.5">
                   <span className="sr-only">Your Company</span>
                   <img
-                    className="h-24"
+                    className="h-20"
                     src={require("../assetts/navlogo.png")}
                     alt=""
                   />
@@ -150,11 +183,11 @@ export default function HeroPage() {
         <main>
           <div className="relative px-6 lg:px-8">
             <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 float-left">
-              <div className="text-center">
-                <h1 className="text-4xl font-fijole leading-8 text-white sm:text-6xl">
-                  Temporary Haunts...{"  "}Lifetime Trauma
+              <div>
+                <h1 className="text-center text-4xl font-fijole leading-8 text-white sm:text-6xl">
+                  Temporary Haunts...{"  "}Deadlong Friends
                 </h1>
-                <p className="mt-6 text-2xl font-cutive leading-8 text-gray-700">
+                <p className="mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-700">
                   BooWho?! connects ghosts to houses and the families within
                   them through long-term and temporary haunting placements
                 </p>
@@ -198,8 +231,8 @@ export default function HeroPage() {
               <div className="w-full max-w-md space-y-8">
                 <div>
                   <img
-                    className="mx-auto h-64 w-auto rounded-xl shadow-md"
-                    src={require("../assetts/plant.gif")}
+                    className="mx-auto h-64 w-auto"
+                    src={require("../assetts/betterdownload.png")}
                     alt="BooWho"
                   />
                 </div>
@@ -208,7 +241,62 @@ export default function HeroPage() {
           </div>
         </main>
       </div>
-      <div className="pt-16">
+      <div className="pt-28 pb-36 bg-white bg-smoke"></div>
+      <div className="pt-0 bg-smoke">
+        <img
+          class="ml-56 pt-0 pl-20 pr-8 float-left h-2/5 w-2/5"
+          src={require("../assetts/ghosthome.gif")}
+          alt="loving ghost"
+        />
+      </div>
+      <div className="bg-white pt-20 pl-36 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl lg:text-center">
+            <h1 className="pt-10 text-center text-2xl font-semibold leading-8 tracking-tight text-indigo-600">
+              Haunt a home
+            </h1>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              We fight against housing insecurity in the paranomral community
+            </p>
+            <p className="mt-6 text-left text-xl leading-8 text-gray-600">
+              Everyday more spooks, ghouls, ghosts, and spirits are facing
+              mounting homelessness in our community. At BooWho?!, we strive to
+              protect housing rights for the paranomral by connecting them with
+              the right house and the right living people to share their homes,
+              lives, - and afterlives - with
+            </p>
+
+            <h3 className="pt-10 text-center text-2xl font-semibold leading-8 tracking-tight text-indigo-600">
+              Connect with the your community and make deadlong friends
+            </h3>
+
+            <h1 className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+              A new home or ghost is waiting for you
+            </h1>
+          </div>
+          <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-4xl">
+            <dl className="grid max-w-xl grid-cols-1 gap-y-10 gap-x-8 lg:max-w-none lg:grid-cols-2 lg:gap-y-16">
+              {features.map((feature) => (
+                <div key={feature.name} className="relative pl-16">
+                  <dt className="text-base font-semibold leading-7 text-gray-900">
+                    <div className="absolute top-0 left-0 flex h-10 w-10 items-center justify-center rounded-lg bg-indigo-600">
+                      <feature.icon
+                        className="h-6 w-6 text-white"
+                        aria-hidden="true"
+                      />
+                    </div>
+                    {feature.name}
+                  </dt>
+                  <dd className="mt-2 text-base leading-7 text-gray-600">
+                    {feature.description}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div className="pt-0 pb-2 bg-white bg-wisp">
         <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <div class="md:flex">
             <div class="md:shrink-0">
@@ -222,12 +310,6 @@ export default function HeroPage() {
               <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
                 You're welcome here
               </div>
-              <a
-                href="#"
-                class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-              >
-                Our families want to meet you
-              </a>
               <p class="mt-2 text-slate-500">
                 No sage, no exorcisms, and no salt circles - we ensure every
                 family on BooWho?! wants their homes to be haunted
@@ -236,12 +318,20 @@ export default function HeroPage() {
           </div>
         </div>
       </div>
-      <div className="float-right">
-        <img
-          class="h-48 w-full object-cover md:h-full md:w-48"
-          src={require("../assetts/wait.png")}
-          alt="loving ghost"
-        />
+      <div className="bg-white">
+        <div className="text-center text-xl ml-4 pt-4 pb-8 text-indigo-600 font-cutive justify-content: center bg-white">
+          <h1>we know who to boo</h1>
+        </div>
+        <div className="flex lg:flex-1">
+          <a href="#!" className="m-auto p-auto">
+            <span className="sr-only">Your Company</span>
+            <img
+              className="h-72 pb-16"
+              src={require("../assetts/navlogo.png")}
+              alt=""
+            />
+          </a>
+        </div>
       </div>
     </>
   );
