@@ -16,7 +16,7 @@ them through long-term and temporary haunting placements
               
 ### Installation
 
-```git clone git@github.com:sarahbethlangley/bro.git```
+```git clone git@github.com:sarahbethlangley/boowho.git```
 
 ```npm install```
 
