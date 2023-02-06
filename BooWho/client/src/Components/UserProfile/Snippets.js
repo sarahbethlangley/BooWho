@@ -24,3 +24,43 @@
 </div>
 
 card kinda
+
+<div className="pt-16 float-left object-position: left">
+        <img
+          class="h-96 w-full object-cover"
+          src={require("../assetts/ghosthome.gif")}
+          alt="loving ghost"
+        />
+      </div>
+
+
+      AGNESSSS
+
+      <div className="pt-16">
+        <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+          <div class="md:flex">
+            <div class="md:shrink-0">
+              <img
+                class="h-48 w-full object-cover md:h-full md:w-48"
+                src={require("../assetts/agnes.png")}
+                alt="loving ghost"
+              />
+            </div>
+            <div class="p-8">
+              <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                You're welcome here
+              </div>
+              <a
+                href="#"
+                class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+              >
+                Our families want to meet you
+              </a>
+              <p class="mt-2 text-slate-500">
+                No sage, no exorcisms, and no salt circles - we ensure every
+                family on BooWho?! wants their homes to be haunted
+              </p>
+            </div>
+          </div>
+          </div>
+          </div>

@@ -65,7 +65,7 @@ export default function HomePage() {
               <button className="-m-1.5 p-1.5">
                 <span className="sr-only">Your Company</span>
                 <img
-                  className="h-36"
+                  className="h-20"
                   src={require("../assetts/navlogo.png")}
                   alt=""
                 />

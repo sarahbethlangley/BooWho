@@ -23,6 +23,11 @@ module.exports = {
         fascinate: ["Fascinate Inline", "cursive"],
         della: ["Della Respira", "serif"],
       },
+
+      backgroundImage: {
+        smoke: "url('/src/assetts/smoke.png')",
+        splash: "url('/src/assetts/splash.jpg')",
+      },
     },
   },
   plugins: [require("@tailwindcss/forms"), "@tailwindcss/aspect-ratio"],
