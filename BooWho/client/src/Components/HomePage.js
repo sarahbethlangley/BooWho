@@ -157,14 +157,14 @@ export default function HomePage() {
                   <h1 className="text-4xl font-fijole leading-8 text-white sm:text-6xl">
                     A HAUNTING WE WILL GO
                   </h1>
-                  <p className="mt-4 text-xl text-gray-300">
+                  <p className="mt-4 text-left text-xl text-gray-300">
                     Whether you're looking for your forever home or prefer to
                     keep things open
                   </p>
                   <h3 className="mt-4 text-xl text-yeller">
                     Going on Haunts is fun
                   </h3>
-                  <p className="mt-4 text-xl text-gray-300">
+                  <p className="mt-4 text-left text-xl text-gray-300">
                     Your Haunt can last as long as you want - just a few days or
                     generations
                   </p>
@@ -258,35 +258,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-      <div className="pt-16">
-        <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-          <div class="md:flex">
-            <div class="md:shrink-0">
-              <img
-                class="h-48 w-full object-cover md:h-full md:w-48"
-                src={require("../assetts/agnes.png")}
-                alt="loving ghost"
-              />
-            </div>
-            <div class="p-8">
-              <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                You're welcome here
-              </div>
-              <a
-                href="#"
-                class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-              >
-                Our families want to meet you
-              </a>
-              <p class="mt-2 text-slate-500">
-                No sage, no exorcisms, and no salt circles - we ensure every
-                family on BooWho?! wants their homes to be haunted
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="pt-16">
+      <div className="pt-16 mr-40">
         <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <div class="md:flex">
             <div class="md:shrink-0">
@@ -298,23 +270,24 @@ export default function HomePage() {
             </div>
             <div class="p-8">
               <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                You're gonna love it
+                So many houses to haunt...
               </div>
               <a
                 href="#"
                 class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
               >
-                Haunting opportunities are updated daily
+                Our Haunting opportunities are updated daily
               </a>
               <p class="mt-2 text-slate-500">
-                As soon as a family lists their home on BooWho!?, their listing
-                is available for you to book a Haunt immediately
+                Cabins, apartments, even classic Victorian, as soon as a family
+                lists their home on BooWho!?, their listing is available for you
+                to book a Haunt immediately
               </p>
             </div>
           </div>
         </div>
       </div>
-      <div className="pt-16 pb-16">
+      <div className="pt-16 pb-16 ml-60">
         <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
           <div class="md:flex">
             <div class="md:shrink-0">
