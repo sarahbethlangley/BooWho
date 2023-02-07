@@ -33,7 +33,6 @@ them through long-term and temporary haunting placements
 
 ### Acknowledgements
 
-- A huge thank you to Jacob Thomas, Justin Sweetin, Josh Barton, for being brilliant programmers and letting me soak up their wisdom. 
 - ALL of Cohort #59 for being such a radically awesome group of cool people  
 
 ### Planning
