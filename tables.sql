@@ -48,6 +48,7 @@ CREATE TABLE [House] (
   [UserProfileId] int NOT NULL,
   [Address] nvarchar(255) NOT NULL,
   [ImageUrl] nvarchar(255), 
+  [Notes] nvarchar(255),
   CONSTRAINT FK_House_UserProfile FOREIGN KEY (UserProfileId) REFERENCES [UserProfile](Id)
 );
 

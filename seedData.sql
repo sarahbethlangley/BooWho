@@ -29,11 +29,11 @@ INSERT INTO UserProfile ([FirebaseUserId], [UserTypeId], [GhostTypeId], [Email],
 INSERT INTO UserProfile ([FirebaseUserId], [UserTypeId], [GhostTypeId], [Email], [Name], [Hobbies], [ImageUrl]) values ('1kshJtMCDVXHHvIqwWGS8PMVPn13', 2, 6, 'agnes@ghost.com', 'Agnes', 'haunting sewing rooms', '');
 
 
-INSERT INTO House ([UserProfileId], [Address], [ImageUrl]) values (1, '32 Axe Cut Ln', '');
-INSERT INTO House ([UserProfileId], [Address], [ImageUrl]) values (2, '876 St. Xylaphone Dr', '');
-INSERT INTO House ([UserProfileId], [Address], [ImageUrl]) values (3, '531 Great Biscuit Ln', '');
-INSERT INTO House ([UserProfileId], [Address], [ImageUrl]) values (4, '90 Nine Ln', '');
-INSERT INTO House ([UserProfileId], [Address], [ImageUrl]) values (5, '876 St. Xylaphone Dr', '');
+INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (1, '32 Axe Cut Ln', '', '');
+INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (2, '876 St. Xylaphone Dr', '', '');
+INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (3, '531 Great Biscuit Ln', '', '');
+INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (4, '90 Nine Ln', '', '');
+INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (5, '14 Woodborough Dr', '', '');
 
 
 INSERT INTO Haunt ([UserProfileId], [HouseId], [Notes]) values (6, 1, 'Accoustics great. Very nice screaming');

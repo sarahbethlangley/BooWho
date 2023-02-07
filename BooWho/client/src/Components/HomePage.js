@@ -205,7 +205,7 @@ export default function HomePage() {
                         </div>
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
-                            src={require("../assetts/littleghost.jpg")}
+                            src={require("../assetts/ghostslove.gif")}
                             alt=""
                             className="h-full w-full object-cover object-center"
                           />
@@ -264,7 +264,7 @@ export default function HomePage() {
             <div class="md:shrink-0">
               <img
                 class="h-48 w-full object-cover md:h-full md:w-48"
-                src={require("../assetts/ghostwater.jpg")}
+                src={require("../assetts/littleghost.jpg")}
                 alt="loving ghost"
               />
             </div>
@@ -293,7 +293,7 @@ export default function HomePage() {
             <div class="md:shrink-0">
               <img
                 class="h-48 w-full object-cover md:h-full md:w-48"
-                src={require("../assetts/ghosthome.gif")}
+                src={require("../assetts/plant.gif")}
                 alt="loving ghost"
               />
             </div>

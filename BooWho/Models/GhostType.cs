@@ -2,13 +2,10 @@
 
 namespace BooWho.Models
 {
-    public class UserType
+    public class GhostType
     {
-        [Required]
         public int Id { get; set; }
 
         public string Type { get; set; }
-     
-
     }
 }
