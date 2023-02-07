@@ -12,11 +12,13 @@ namespace BooWho.Models
         public int UserTypeId { get; set; }
         public int GhostTypeId { get; set; }
         public string Email { get; set; }
-
+        public string ImageUrl { get; set; }
         public string Name { get; set; }
 
         public string Hobbies { get; set; }
        
         public UserType UserType { get; set; }
+
+        public GhostType GhostType { get; set;}
     }
 }
