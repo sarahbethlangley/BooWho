@@ -8,7 +8,6 @@ namespace BooWho.Repositories
         List<UserProfile> GetAllUsers();
         UserProfile GetByFirebaseUserId(string firebaseUserId);
         void Add(UserProfile userProfile);
-        void Delete(UserProfile userProfile);
         void Update(UserProfile userProfile);
        
     }

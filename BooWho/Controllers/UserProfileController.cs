@@ -17,6 +17,12 @@ namespace BooWho.Controllers
             _userProfileRepository = userProfileRepository;
         }
 
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_userProfileRepository.GetAllUsers());
+        }
+
         [HttpGet("{firebaseUserId}")]
         public IActionResult GetByFirebaseUserId(string firebaseUserId)
         {
@@ -39,14 +45,19 @@ namespace BooWho.Controllers
             return Ok();
         }
 
-        [HttpPost]
-        public IActionResult Register(UserProfile userProfile)
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, UserProfile profile)
         {
-            // All newly registered users start out as a "user" user type (i.e. they are not admins)
-            userProfile.UserTypeId = UserType.USER_TYPE_ID;
-            _userProfileRepository.Add(userProfile);
-            return CreatedAtAction(
-                nameof(GetByFirebaseUserId), new { firebaseUserId = userProfile.FirebaseUserId }, userProfile);
+            if (id != profile.Id)
+            {
+                return BadRequest();
+            }
+
+            _userProfileRepository.Update(profile);
+            return NoContent();
         }
+
+
+       
     }
 }

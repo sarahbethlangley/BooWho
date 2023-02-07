@@ -1,83 +1,93 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using System;
+using System.Reflection.Metadata.Ecma335;
+using BooWho.Models;
+using BooWho.Repositories;
+using BooWho.Interfaces;
+using Microsoft.Data.SqlClient;
+using System.Security.Claims;
 
 namespace BooWho.Controllers
 {
-    public class HouseController : Controller
+    [Route("api/[controller]")]
+    [ApiController]
+    [Authorize]
+    public class HouseController : ControllerBase
     {
-        // GET: HouseController
-        public ActionResult Index()
+        private readonly IHouseRepository _houseRepository;
+        private readonly IHauntRepository _hauntRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
+
+        public HouseController(
+            IHouseRepository houseRepository,
+            IHauntRepository hauntRepository,
+            IUserProfileRepository userProfileRepository)
         {
-            return View();
+            _houseRepository = houseRepository;
+            _hauntRepository = hauntRepository;
+            _userProfileRepository = userProfileRepository;
+
         }
 
-        // GET: HouseController/Details/5
-        public ActionResult Details(int id)
+        [HttpGet]
+        public IActionResult Get()
         {
-            return View();
+            var tags = _houseRepository.GetAllHouses();
+            return Ok(tags);
         }
 
-        // GET: HouseController/Create
-        public ActionResult Create()
+        [HttpGet("myHouse/{firebaseUserId}")]
+        public IActionResult GetByFirebaseUserId(string firebaseUserId)
         {
-            return View();
+            var userHouses = _houseRepository.GetAllHousesByUser(firebaseUserId);
+            if (userHouses == null)
+            {
+                return NotFound();
+            }
+            return Ok(userHouses);
+
         }
 
-        // POST: HouseController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Post(House house)
         {
-            try
+            var currentUserProfile = GetCurrentUserProfile();
+            if (currentUserProfile.UserType.Type != "family")
             {
-                return RedirectToAction(nameof(Index));
+                return Unauthorized();
             }
-            catch
-            {
-                return View();
-            }
+            house.UserProfileId = currentUserProfile.Id;
+            _houseRepository.Add(house);
+            return CreatedAtAction(nameof(Get), new { id = house.Id }, house);
         }
 
-        // GET: HouseController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, House house)
         {
-            return View();
+            if (id != house.Id)
+            {
+                return BadRequest();
+            }
+
+            _houseRepository.Update(house);
+            return NoContent();
         }
 
-        // POST: HouseController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _houseRepository.Delete(id);
+            return NoContent();
         }
 
-        // GET: HouseController/Delete/5
-        public ActionResult Delete(int id)
+        private UserProfile GetCurrentUserProfile()
         {
-            return View();
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
 
-        // POST: HouseController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+
     }
 }

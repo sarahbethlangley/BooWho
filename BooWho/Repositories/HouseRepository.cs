@@ -67,9 +67,76 @@ namespace BooWho.Repositories
                                     Id = DbUtils.GetInt(reader, "GhostTypeId"),
                                     Type = DbUtils.GetString(reader, "GhostType"),
                                 },
+                            }
+                            
+                            
+                        });
+                    }
+
+                    reader.Close();
+
+                    return houses;
+                }
+            }
+        }
+
+        public List<House> GetAllHousesByUser(string fireId)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                      SELECT h.Id, h.Address, h.ImageUrl, h.Notes, h.UserProfileId,
+                              up.Name, up.ImageUrl, up.UserTypeId, up.GhostTypeId,
+                              ut.Type AS UserType,  
+                              gt.Type AS GhostType 
+                         
+                       FROM House h
+                         
+                              
+                              LEFT JOIN UserProfile up ON h.UserProfileId = up.id
+                              LEFT JOIN UserType ut ON u.UserTypeId = ut.id
+                              LEFT JOIN GhostType gt ON u.GhostTypeId = gt.id
+                     
+                        WHERE u.FirebaseUserId = @fireId
+                         ";
+
+                    cmd.Parameters.AddWithValue("@fireId", fireId);
+                    var reader = cmd.ExecuteReader();
+
+                    var houses = new List<House>();
+
+                    while (reader.Read())
+                    {
+                        houses.Add(new House()
+                        
+                        {
+                            Id = DbUtils.GetInt(reader, "Id"),
+                            Address = DbUtils.GetString(reader, "Address"),
+                            ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
+                            Notes = DbUtils.GetString(reader, "Notes"),
+                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                            UserProfile = new UserProfile()
+                            {
+                                Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                Name = DbUtils.GetString(reader, "Name"),
+                                ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
+                                UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
+                                UserType = new UserType()
+                                {
+                                    Id = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
+                                    Type = reader.GetString(reader.GetOrdinal("UserType"))
+                                },
+                                GhostTypeId = DbUtils.GetInt(reader, "GhostTypeId"),
+                                GhostType = new GhostType()
+                                {
+                                    Id = DbUtils.GetInt(reader, "GhostTypeId"),
+                                    Type = DbUtils.GetString(reader, "GhostType"),
+                                },
                             },
-                            
-                            
+
                         });
                     }
 
@@ -128,7 +195,7 @@ namespace BooWho.Repositories
             }
         }
 
-        public void Delete(House house)
+        public void Delete(int id)
         {
             using (SqlConnection conn = Connection)
             {
@@ -140,7 +207,7 @@ namespace BooWho.Repositories
                         DELETE FROM House
                         WHERE Id = @id
                     ";
-                    cmd.Parameters.AddWithValue("@id", house.Id);
+                    cmd.Parameters.AddWithValue("@id", id);
 
                     cmd.ExecuteNonQuery();
                 }
