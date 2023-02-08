@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./index.css";
-import Header from "./components/Header";
+import Header from "./components/Nav/Header";
 import ApplicationViews from "./components/ApplicationViews";
 import { BrowserRouter } from "react-router-dom";
 import { onLoginStatusChange } from "./modules/authManager";
