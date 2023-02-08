@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { logout } from "../modules/authManager";
+import { logout } from "../../modules/authManager";
 
 const navigation = [
   { name: "Active Haunts", href: "#" },
