@@ -1,5 +1,5 @@
 # BooWho
-Full-Stack application to connect ghosts with houses to haunt using ASP.NET API, React, and CSSTailwind
+Full-Stack application to connect ghosts with houses to haunt using ASP.NET API, React, and Tailwind CSS
 
 ## About BooWho?!
 
