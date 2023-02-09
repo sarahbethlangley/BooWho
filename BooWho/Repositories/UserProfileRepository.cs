@@ -74,7 +74,7 @@ namespace BooWho.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, Up.FirebaseUserId, up.Name AS UserProfileName, up.Email, up.Hobbies, up.UserTypeId
+                        SELECT up.Id, Up.FirebaseUserId, up.Name AS UserProfileName, up.Email, up.Hobbies, up.UserTypeId,
                                ut.Type AS UserTypeType, up.GhostTypeId, gt.Type as GhostType
                           FROM UserProfile up
                                LEFT JOIN UserType ut on up.UserTypeId = ut.Id

@@ -1,30 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { getAllHouses } from "../../modules/houseManager";
+import HouseCard from "../House/HouseCard";
 
-export default function HouseList() {
+export default function HouseList({ setDetailsHouseId }) {
   let navigate = useNavigate();
+  const [houses, setHouses] = useState([]);
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
-  const handleNavigate = () => {
-    navigate("/register");
+  const getHouses = () => {
+    getAllHouses().then((houses) => setHouses(houses));
   };
 
-  const handleHomeNavigate = () => {
-    navigate("/boowho");
-  };
-
-  const loginSubmit = (e) => {
-    e.preventDefault();
-    login(email, password)
-      .then(() => navigate("/boohome"))
-      .catch(() => alert("Login Failed, Boo"));
-  };
+  useEffect(() => {
+    getHouses();
+  }, []);
 
   return (
     <>
-      <div className="isolate bg-spooky"></div>
+      <h2>Houses</h2>
+      <section>
+        {houses.map((h) => (
+          <HouseCard
+            key={h.id}
+            house={h}
+            setDetailsHouseId={setDetailsHouseId}
+          />
+        ))}
+      </section>
     </>
   );
 }

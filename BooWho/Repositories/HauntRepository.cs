@@ -196,7 +196,7 @@ namespace BooWho.Repositories
                 {
                     cmd.CommandText = @"INSERT INTO Haunt (UserProfileId, HouseId, Notes)
                                         OUTPUT INSERTED.ID
-                                        VALUES (@UserProfileId, @HouseId, @NotesId)";
+                                        VALUES (@UserProfileId, @HouseId, @Notes)";
                     DbUtils.AddParameter(cmd, "@UserProfileId", haunt.UserProfileId);
                     DbUtils.AddParameter(cmd, "@HouseId", haunt.HouseId);
                     DbUtils.AddParameter(cmd, "@Notes", haunt.Notes);

@@ -61,7 +61,7 @@ export default function Header({ isLoggedIn }) {
                     <span className="sr-only">Your Company</span>
                     <img
                       className="h-24"
-                      src={require("../assetts/logo.png")}
+                      src={require("../../assetts/logo.png")}
                       alt=""
                     />
                   </a>
@@ -112,7 +112,7 @@ export default function Header({ isLoggedIn }) {
                       <span className="sr-only">Your Company</span>
                       <img
                         className="h-24"
-                        src={require("../assetts/logo.png")}
+                        src={require("../../assetts/logo.png")}
                         alt=""
                       />
                     </a>
@@ -165,7 +165,7 @@ export default function Header({ isLoggedIn }) {
                     <span className="sr-only">Your Company</span>
                     <img
                       className="h-24"
-                      src={require("../assetts/logo.png")}
+                      src={require("../../assetts/logo.png")}
                       alt=""
                     />
                   </a>
@@ -218,7 +218,7 @@ export default function Header({ isLoggedIn }) {
                       <span className="sr-only">Your Company</span>
                       <img
                         className="h-24"
-                        src={require("../assetts/logo.png")}
+                        src={require("../../assetts/logo.png")}
                         alt=""
                       />
                     </a>

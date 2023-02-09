@@ -47,7 +47,7 @@ namespace BooWho.Controllers
         public IActionResult Post(Haunt haunt)
         {
             var currentUserProfile = GetCurrentUserProfile();
-            if (currentUserProfile.UserType.Type != "ghost")
+            if (currentUserProfile.UserType.Type != "Ghost")
             {
                 return Unauthorized();
             }

@@ -93,7 +93,7 @@ export default function HeroPage() {
                 <span className="sr-only">Your Company</span>
                 <img
                   className="h-20"
-                  src={require("../assetts/navlogo.png")}
+                  src={require("../../assetts/navlogo.png")}
                   alt=""
                 />
               </a>
@@ -141,7 +141,7 @@ export default function HeroPage() {
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-20"
-                    src={require("../assetts/navlogo.png")}
+                    src={require("../../assetts/navlogo.png")}
                     alt=""
                   />
                 </a>
@@ -232,7 +232,7 @@ export default function HeroPage() {
                 <div>
                   <img
                     className="mx-auto h-64 w-auto"
-                    src={require("../assetts/betterdownload.png")}
+                    src={require("../../assetts/betterdownload.png")}
                     alt="BooWho"
                   />
                 </div>
@@ -245,7 +245,7 @@ export default function HeroPage() {
       <div className="pt-0 bg-smoke">
         <img
           class="ml-56 pt-0 pl-20 pr-8 float-left h-2/5 w-2/5"
-          src={require("../assetts/ghosthome.gif")}
+          src={require("../../assetts/ghosthome.gif")}
           alt="loving ghost"
         />
       </div>
@@ -253,10 +253,10 @@ export default function HeroPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:text-center">
             <h1 className="pt-10 text-center text-2xl font-semibold leading-8 tracking-tight text-indigo-600">
-              Haunt a home
+              Haunt a <em>home</em>
             </h1>
             <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-              We fight against housing insecurity in the paranomral community
+              We fight against housing insecurity in the paranormal community
             </p>
             <p className="mt-6 text-left text-xl leading-8 text-gray-600">
               Everyday more spooks, ghouls, ghosts, and spirits are facing
@@ -302,7 +302,7 @@ export default function HeroPage() {
             <div class="md:shrink-0">
               <img
                 class="h-48 w-full object-cover md:h-full md:w-48"
-                src={require("../assetts/agnes.png")}
+                src={require("../../assetts/agnes.png")}
                 alt="loving ghost"
               />
             </div>
@@ -327,7 +327,7 @@ export default function HeroPage() {
             <span className="sr-only">Your Company</span>
             <img
               className="h-72 pb-16"
-              src={require("../assetts/navlogo.png")}
+              src={require("../../assetts/navlogo.png")}
               alt=""
             />
           </a>
