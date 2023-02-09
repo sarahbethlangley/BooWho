@@ -1,30 +1,42 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { getAllHaunts } from "../../modules/hauntManager";
+// import { getAllHouses } from "../../modules/houseManager";
+// import HouseCard from "../../modules/houseCard";
 
-export default function HauntList() {
-  let navigate = useNavigate();
+// export default function HouseList({ setDetailsHauntId, setDetailsHouseId }) {
+//   let navigate = useNavigate();
+//   const [houses, setHouses] = useState([]);
+//   const [haunts, setHaunt] = useState([]);
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+//   const getHouses = () => {
+//     getAllHouses().then((houses) => setHouses(houses));
+//   };
 
-  const handleNavigate = () => {
-    navigate("/register");
-  };
+//   const getHaunts = () => {
+//     getAllHouses().then((houses) => setHouses(houses));
+//   };
 
-  const handleHomeNavigate = () => {
-    navigate("/boowho");
-  };
+//   useEffect(() => {
+//     getAllHaunts();
+//   }, []);
 
-  const loginSubmit = (e) => {
-    e.preventDefault();
-    login(email, password)
-      .then(() => navigate("/boohome"))
-      .catch(() => alert("Login Failed, Boo"));
-  };
+//   useEffect(() => {
+//     getAllHouses();
+//   }, []);
 
-  return (
-    <>
-      <div className="isolate bg-spooky"></div>
-    </>
-  );
-}
+//   return (
+//     <>
+//       <h2>Houses</h2>
+//       <section>
+//         {houses.map((h) => (
+//           <HouseCard
+//             key={h.id}
+//             house={h}
+//             setDetailsHouseId={setDetailsHouseId}
+//           />
+//         ))}
+//       </section>
+//     </>
+//   );
+// }

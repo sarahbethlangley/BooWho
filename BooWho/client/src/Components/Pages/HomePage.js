@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { logout } from "../../modules/authManager";
+import { HouseList } from "../House/HouseList";
 
 const navigation = [
   { name: "Active Haunts", href: "#" },
@@ -14,7 +15,15 @@ const navigation = [
 
 export default function HomePage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  let navigate = useNavigate();
+
+  const navigate = useNavigate();
+
+  const handleHouseListNavigate = () => {
+    navigate("/house");
+  };
+  const handleHauntListNavigate = () => {
+    navigate("/haunt");
+  };
 
   const logoutSubmit = () => {
     {
@@ -66,7 +75,7 @@ export default function HomePage() {
                 <span className="sr-only">Your Company</span>
                 <img
                   className="h-20"
-                  src={require("../assetts/navlogo.png")}
+                  src={require("../../assetts/navlogo.png")}
                   alt=""
                 />
               </button>
@@ -113,7 +122,7 @@ export default function HomePage() {
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-24"
-                    src={require("../assetts/navlogo.png")}
+                    src={require("../../assetts/navlogo.png")}
                     alt=""
                   />
                 </a>
@@ -182,37 +191,14 @@ export default function HomePage() {
                       <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                         <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
                           <img
-                            src={require("../assetts/cornfield.jpg")}
+                            src={require("../../assetts/cornfield.jpg")}
                             alt=""
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
-                            src={require("../assetts/beach.jpg")}
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                      </div>
-                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src={require("../assetts/column.jpg")}
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src={require("../assetts/ghostslove.gif")}
-                            alt=""
-                            className="h-full w-full object-cover object-center"
-                          />
-                        </div>
-                        <div className="h-64 w-44 overflow-hidden rounded-lg">
-                          <img
-                            src={require("../assetts/apartment.jpg")}
+                            src={require("../../assetts/beach.jpg")}
                             alt=""
                             className="h-full w-full object-cover object-center"
                           />
@@ -221,14 +207,37 @@ export default function HomePage() {
                       <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
-                            src={require("../assetts/smaller.jpg")}
+                            src={require("../../assetts/column.jpg")}
                             alt=""
                             className="h-full w-full object-cover object-center"
                           />
                         </div>
                         <div className="h-64 w-44 overflow-hidden rounded-lg">
                           <img
-                            src={require("../assetts/window.jpg")}
+                            src={require("../../assetts/ghostslove.gif")}
+                            alt=""
+                            className="h-full w-full object-cover object-center"
+                          />
+                        </div>
+                        <div className="h-64 w-44 overflow-hidden rounded-lg">
+                          <img
+                            src={require("../../assetts/apartment.jpg")}
+                            alt=""
+                            className="h-full w-full object-cover object-center"
+                          />
+                        </div>
+                      </div>
+                      <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
+                        <div className="h-64 w-44 overflow-hidden rounded-lg">
+                          <img
+                            src={require("../../assetts/smaller.jpg")}
+                            alt=""
+                            className="h-full w-full object-cover object-center"
+                          />
+                        </div>
+                        <div className="h-64 w-44 overflow-hidden rounded-lg">
+                          <img
+                            src={require("../../assetts/window.jpg")}
                             alt=""
                             className="h-full w-full object-cover object-center"
                           />
@@ -241,17 +250,18 @@ export default function HomePage() {
                 <button
                   href="#"
                   className="mr-9 inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700"
+                  onClick={handleHouseListNavigate}
                 >
-                  Start A Haunt
+                  Find A House
                 </button>
                 <button className="mr-9 inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700">
-                  Find A House
+                  Start A Haunt
                 </button>
                 <button
                   href="#"
                   className="inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700"
                 >
-                  Find A Family
+                  See Our Families
                 </button>
               </div>
             </div>
@@ -264,7 +274,7 @@ export default function HomePage() {
             <div class="md:shrink-0">
               <img
                 class="h-48 w-full object-cover md:h-full md:w-48"
-                src={require("../assetts/littleghost.jpg")}
+                src={require("../../assetts/littleghost.jpg")}
                 alt="loving ghost"
               />
             </div>
@@ -293,7 +303,7 @@ export default function HomePage() {
             <div class="md:shrink-0">
               <img
                 class="h-48 w-full object-cover md:h-full md:w-48"
-                src={require("../assetts/plant.gif")}
+                src={require("../../assetts/plant.gif")}
                 alt="loving ghost"
               />
             </div>

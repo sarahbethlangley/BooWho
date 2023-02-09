@@ -61,7 +61,7 @@ export default function Register() {
         <div className="pt-1 float-right">
           <img
             className="h-auto w-auto object-center"
-            src={require("../assetts/ghostgirl.png")}
+            src={require("../../assetts/ghostgirl.png")}
             alt=""
           />
         </div>
@@ -70,7 +70,7 @@ export default function Register() {
             <div>
               <img
                 className="mx-auto h-64 w-auto"
-                src={require("../assetts/twoboo.gif")}
+                src={require("../../assetts/twoboo.gif")}
                 alt="BooWho"
               />
               <h2 className="mt-6 text-center text-4xl font-frijole tracking-tight text-white">

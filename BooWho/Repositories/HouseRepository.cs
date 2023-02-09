@@ -24,59 +24,55 @@ namespace BooWho.Repositories
                 {
                     cmd.CommandText = @"
                        SELECT h.Id, h.Address, h.ImageUrl, h.Notes, h.UserProfileId,
-                              up.Name, up.ImageUrl, up.UserTypeId, up.GhostTypeId,
-                              ut.Type AS UserType,  
-                              gt.Type AS GhostType 
+                              up.Name, up.ImageUrl, up.UserTypeId, 
+                              ut.Type AS UserType
+                              
                          
                        FROM House h
                          
                               
                               LEFT JOIN UserProfile up ON h.UserProfileId = up.id
-                              LEFT JOIN UserType ut ON u.UserTypeId = ut.id
-                              LEFT JOIN GhostType gt ON u.GhostTypeId = gt.id
-                       WHERE h.id = @id
+                              LEFT JOIN UserType ut ON up.UserTypeId = ut.id
+                              
+                       
                         ";
+                    
+                    using SqlDataReader reader = cmd.ExecuteReader();
 
-                    var reader = cmd.ExecuteReader();
+                    
 
-                    var houses = new List<House>();
+                        var houses = new List<House>();
 
-                    while (reader.Read())
-                    {
-                        houses.Add(new House()
+                        while (reader.Read())
                         {
-                            Id = DbUtils.GetInt(reader, "Id"),
-                            Address = DbUtils.GetString(reader, "Address"),
-                            ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                            Notes = DbUtils.GetString(reader, "Notes"),
-                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                            UserProfile = new UserProfile()
+                            houses.Add(new House()
                             {
-                                Id = DbUtils.GetInt(reader, "UserProfileId"),
-                                Name = DbUtils.GetString(reader, "Name"),
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Address = DbUtils.GetString(reader, "Address"),
                                 ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                                UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                                UserType = new UserType()
+                                Notes = DbUtils.GetString(reader, "Notes"),
+                                UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                                UserProfile = new UserProfile()
                                 {
-                                    Id = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
-                                    Type = reader.GetString(reader.GetOrdinal("UserType"))
-                                },
-                                GhostTypeId = DbUtils.GetInt(reader, "GhostTypeId"),
-                                GhostType = new GhostType()
-                                {
-                                    Id = DbUtils.GetInt(reader, "GhostTypeId"),
-                                    Type = DbUtils.GetString(reader, "GhostType"),
-                                },
-                            }
-                            
-                            
-                        });
+                                    Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                    Name = DbUtils.GetString(reader, "Name"),
+                                    ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
+                                    UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
+                                    UserType = new UserType()
+                                    {
+                                        Id = DbUtils.GetInt(reader, "UserTypeId"),
+                                        Type = DbUtils.GetString(reader, "UserType"),
+                                    },
+                                    
+                                }
+
+
+                            });
+                        }
+
+                        return houses;
+
                     }
-
-                    reader.Close();
-
-                    return houses;
-                }
             }
         }
 
