@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import { getAllHouses } from "../../modules/houseManager";
-import HouseCard from "../House/HouseCard";
 
-export default function HouseList({ setDetailsHouseId }) {
-  let navigate = useNavigate();
+export default function HouseList() {
   const [houses, setHouses] = useState([]);
+  const { houseId } = useParams();
 
   const getHouses = () => {
     getAllHouses().then((houses) => setHouses(houses));
@@ -13,18 +12,40 @@ export default function HouseList({ setDetailsHouseId }) {
 
   useEffect(() => {
     getHouses();
-  }, []);
+  });
 
   return (
     <>
       <h2>Houses</h2>
       <section>
         {houses.map((h) => (
-          <HouseCard
-            key={h.id}
-            house={h}
-            setDetailsHouseId={setDetailsHouseId}
-          />
+          <div key={h.id} className="pt-16">
+            <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+              <div className="md:flex">
+                <div className="md:shrink-0">
+                  <img
+                    className="h-48 w-full object-cover md:h-full md:w-48"
+                    src={h.imageUrl}
+                    alt="house"
+                  />
+                </div>
+                <div class="p-8">
+                  <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                    {h.address}
+                  </div>
+                  <div className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+                    you could haunt this...
+                  </div>
+                  <p class="mt-2 text-slate-500">check it out</p>
+                  <Link to={`/detail/${h.id}`}>
+                    <button className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                      Show details
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
         ))}
       </section>
     </>

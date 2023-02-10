@@ -1,33 +1,97 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
+import { getHouseById } from "../../modules/houseManager";
 
-export default function HouseDetails() {
-  let navigate = useNavigate();
+const HouseShow = () => {
+  const [house, setHouse] = useState({});
+  const { houseId } = useParams();
 
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-
-  const handleNavigate = () => {
-    navigate("/register");
+  const getHouse = (id) => {
+    getHouseById(id).then((house) => setHouse(house));
   };
 
-  const handleHomeNavigate = () => {
-    navigate("/boowho");
-  };
-
-  const loginSubmit = (e) => {
-    e.preventDefault();
-    login(email, password)
-      .then(() => navigate("/boohome"))
-      .catch(() => alert("Login Failed, Boo"));
-  };
+  useEffect(() => {
+    getHouse(houseId);
+  }, []);
 
   return (
     <>
-      <div className="isolate bg-spooky"></div>
+      <div className="bg-spooky">
+        <div className="bg-spooky pt-16 float-left object-position: left">
+          <img
+            class="h-96 w-full object-cover"
+            src={house.imageUrl}
+            alt="loving ghost"
+          />
+          <p className="mt-4 text-left text-xl text-gray-300">
+            {house.address}
+          </p>
+          <p className="mt-4 text-left text-xl text-gray-300">{house.notes}</p>
+          <Link to={`/edit/${houseId}`}>
+            <button className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+              edit this house
+            </button>
+          </Link>
+        </div>
+      </div>
     </>
   );
-}
+};
+
+export default HouseShow;
+
+// import React, { useEffect, useState } from "react";
+// import { useNavigate } from "react-router-dom";
+// import { getHouseById } from "../../modules/houseManager";
+
+// export default function HouseShow(evt) {
+//   const [house, setHouse] = useState([]);
+
+//   const houseId = parseInt(localStorage.getItem("showHouseId"));
+
+//   const getHouse = (evt) => {
+//     let hacienda = getHouseById(houseId);
+//     console.log(hacienda);
+//     setHouse(hacienda);
+//   };
+
+//   useEffect(() => {
+//     getHouse();
+//   }, []);
+
+//   return (
+//     <>
+//       <div className="pt-16">
+//         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+//           <div className="md:flex">
+//             <div className="md:shrink-0">
+//               <img
+//                 className="h-48 w-full object-cover md:h-full md:w-48"
+//                 src={house.imageUrl}
+//                 alt="house"
+//               />
+//             </div>
+//             <div className="p-8">
+//               <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+//                 {house.address}
+//               </div>
+//               <div className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+//                 {house.notes}
+//               </div>
+//               <p className="mt-2 text-slate-500">check it out</p>
+//               {/* <button
+//               className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+//               onClick={handleShowHouseByDetails(house.id)}
+//             >
+//               Show details
+//             </button> */}
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// }
 
 // import { Fragment, useState } from "react";
 // import { Dialog, RadioGroup, Transition } from "@headlessui/react";

@@ -50,6 +50,18 @@ namespace BooWho.Controllers
 
         }
 
+        [HttpGet("detail/{id}")]
+        public IActionResult GetById(int id)
+        {
+            var house = _houseRepository.GetHouseById(id);
+
+            if (house == null)
+            {
+                NotFound();
+            }
+            return Ok(house);
+        }
+
         [HttpPost]
         public IActionResult Post(House house)
         {

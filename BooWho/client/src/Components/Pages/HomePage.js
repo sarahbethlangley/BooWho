@@ -7,10 +7,10 @@ import { logout } from "../../modules/authManager";
 import { HouseList } from "../House/HouseList";
 
 const navigation = [
-  { name: "Active Haunts", href: "#" },
-  { name: "Haunted Houses", href: "#" },
-  { name: "Social", href: "#" },
-  { name: "My Profile", href: "#" },
+  { name: "Active Haunts" },
+  { name: "Haunted Houses" },
+  { name: "Social" },
+  { name: "My Profile" },
 ];
 
 export default function HomePage() {

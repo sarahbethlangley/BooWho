@@ -29,11 +29,11 @@ INSERT INTO UserProfile ([FirebaseUserId], [UserTypeId], [GhostTypeId], [Email],
 INSERT INTO UserProfile ([FirebaseUserId], [UserTypeId], [GhostTypeId], [Email], [Name], [Hobbies], [ImageUrl]) values ('1kshJtMCDVXHHvIqwWGS8PMVPn13', 2, 6, 'agnes@ghost.com', 'Agnes', 'haunting sewing rooms', '');
 
 
-INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (1, '32 Axe Cut Ln', '', '');
-INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (2, '876 St. Xylaphone Dr', '', '');
-INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (3, '531 Great Biscuit Ln', '', '');
-INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (4, '90 Nine Ln', '', '');
-INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (5, '14 Woodborough Dr', '', '');
+INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (1, '32 Axe Cut Ln', 'https://ap.rdcpix.com/7a8af29b71a8c5a2701e0b9d83d7d389l-b4272229279od-w480_h360_x2.jpg', 'A quaint little home ready for you to add a little gloom to it');
+INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (2, '876 St. Xylaphone Dr', 'https://www.quickenloans.com/learnassets/QuickenLoans.com/Learning%20Center%20Images/Stock-Tudor-Home-AdobeStock-5544246-copy.jpeg', 'There is a dearth of natural lighting in this house. All Ghosts will love the darkness during the day');
+INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (3, '531 Great Biscuit Ln', 'https://thumbor.forbes.com/thumbor/fit-in/x/https://www.forbes.com/advisor/wp-content/uploads/2021/08/download-7.jpg', 'Surburban living at its best - this house has been featured in WhosBoos Best Houses To Haunt 2023');
+INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (4, '90 Nine Ln', 'https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_675,pg_1,q_80,w_1200/qmlxjxfvuccnfhqq8cdg.jpg', 'A classic Victorian featuring original crystal door knobs, a little drafty, just like you like it');
+INSERT INTO House ([UserProfileId], [Address], [ImageUrl], [Notes]) values (5, '14 Woodborough Dr', 'https://hgtvhome.sndimg.com/content/dam/images/door/fullset/2013/2/18/0/celebrity-cc-doug-kerr-amityville-horror-house.jpg.rend.hgtvcom.966.725.suffix/1427751739875.jpeg', 'Boasting a dark history of murder and mayhem, this lovely colonial house is ready for you to haunt');
 
 
 INSERT INTO Haunt ([UserProfileId], [HouseId], [Notes]) values (6, 1, 'Accoustics great. Very nice screaming');

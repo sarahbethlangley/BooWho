@@ -1,10 +1,12 @@
-﻿using BooWho.Models;
+﻿using System;
+using BooWho.Models;
 using BooWho.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
 using BooWho.Utils;
 using Microsoft.Extensions.Hosting;
 using System.Collections.Generic;
+
 
 
 
@@ -142,6 +144,52 @@ namespace BooWho.Repositories
                 }
             }
         }
+
+        public House GetHouseById(int id)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                        SELECT h.Id, h.Address, h.ImageUrl, h.Notes
+                        FROM House h
+                        WHERE h.Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+
+                        House house = null;
+
+                        if (reader.Read())
+                        {
+                            house = new House()
+                            {
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Address = DbUtils.GetString(reader, "Address"),
+                                ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
+                                Notes = DbUtils.GetString(reader, "Notes")
+
+
+                            };
+                        }
+                            return house;
+
+                    }
+
+                }
+            }
+
+         }
+                
+                    
+                
+            
+        
 
 
         public void Add(House house)
