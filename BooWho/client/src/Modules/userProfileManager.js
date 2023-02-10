@@ -47,7 +47,7 @@ export const updateUserProfile = (id, userProfile) => {
 
 export const editUserProfile = (id, userProfile) => {
   return getToken().then((token) => {
-    return fetch(`${_userProfileUrl}=${id}`, {
+    return fetch(`${userProfileUrl}=${id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

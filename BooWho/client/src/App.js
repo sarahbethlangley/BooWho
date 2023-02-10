@@ -7,7 +7,6 @@ import { onLoginStatusChange } from "./modules/authManager";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
-  const [isGhost, setIsGhost] = useState(null);
 
   useEffect(() => {
     onLoginStatusChange(setIsLoggedIn);

@@ -1,39 +1,29 @@
-// import React, { useState } from "react";
+// import React, { useState, useEffect } from "react";
 // import { useNavigate } from "react-router-dom";
-// import { getAllHaunts } from "../../modules/hauntManager";
 // import { getAllHouses } from "../../modules/houseManager";
-// import HouseCard from "../../modules/houseCard";
+// import HouseCard from "../House/HouseCard";
 
-// export default function HouseList({ setDetailsHauntId, setDetailsHouseId }) {
+// export default function HouseList({ setDetailsHouseId }) {
 //   let navigate = useNavigate();
-//   const [houses, setHouses] = useState([]);
-//   const [haunts, setHaunt] = useState([]);
-
-//   const getHouses = () => {
-//     getAllHouses().then((houses) => setHouses(houses));
-//   };
+//   const [haunt, setHaunts] = useState([]);
 
 //   const getHaunts = () => {
-//     getAllHouses().then((houses) => setHouses(houses));
+//     getAllHaunts().then((haunt) => setHaunts(haunt));
 //   };
 
 //   useEffect(() => {
-//     getAllHaunts();
-//   }, []);
-
-//   useEffect(() => {
-//     getAllHouses();
+//     getHaunts();
 //   }, []);
 
 //   return (
 //     <>
-//       <h2>Houses</h2>
+//       <h2>Haunts</h2>
 //       <section>
-//         {houses.map((h) => (
+//         {haunt.map((h) => (
 //           <HouseCard
-//             key={h.id}
-//             house={h}
-//             setDetailsHouseId={setDetailsHouseId}
+//             key={ha.id}
+//             haunt={ha}
+//             setDetailsHauntId={setDetailsHauntId}
 //           />
 //         ))}
 //       </section>
