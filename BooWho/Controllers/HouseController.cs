@@ -11,7 +11,7 @@ using System.Security.Claims;
 
 namespace BooWho.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/")]
     [ApiController]
     [Authorize]
     public class HouseController : ControllerBase
@@ -83,7 +83,7 @@ namespace BooWho.Controllers
                 return BadRequest();
             }
 
-            _houseRepository.Update(house);
+            _houseRepository.Update(id, house);
             return NoContent();
         }
 

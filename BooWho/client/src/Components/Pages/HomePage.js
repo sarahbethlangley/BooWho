@@ -7,10 +7,10 @@ import { logout } from "../../modules/authManager";
 import { HouseList } from "../House/HouseList";
 
 const navigation = [
-  { name: "Active Haunts" },
-  { name: "Haunted Houses" },
-  { name: "Social" },
-  { name: "My Profile" },
+  { nameOne: "Active Haunts" },
+  { nameTwo: "Available Houses" },
+  { nameThree: "Ghosts and Families" },
+  { nameFour: "My Profile" },
 ];
 
 export default function HomePage() {
@@ -26,13 +26,8 @@ export default function HomePage() {
   };
 
   const logoutSubmit = () => {
-    {
-      {
-        {
-          logout();
-        }
-      }
-    }
+    logout();
+
     navigate("/boowho");
   };
 
@@ -92,13 +87,36 @@ export default function HomePage() {
             </div>
             <div className="hidden lg:flex lg:gap-x-12">
               {navigation.map((item) => (
-                <button
-                  key={item.name}
-                  href={item.href}
-                  className="text-lg font-cutive leading-6 text-yeller"
-                >
-                  {item.name}
-                </button>
+                <div>
+                  <button
+                    key={item.nameOne}
+                    onClick={handleHauntListNavigate}
+                    className="text-lg font-cutive leading-6 text-yeller"
+                  >
+                    {item.nameOne}
+                  </button>
+                  <button
+                    key={item.nameTwo}
+                    onClick={handleHouseListNavigate}
+                    className="text-lg font-cutive leading-6 text-yeller"
+                  >
+                    {item.nameTwo}
+                  </button>
+                  <button
+                    key={item.nameThree}
+                    // onClick={handleUserProfileListNavigate}
+                    className="text-lg font-cutive leading-6 text-yeller"
+                  >
+                    {item.nameThree}
+                  </button>
+                  <button
+                    key={item.nameFour}
+                    // onClick={handleUserProfileNavigate}
+                    className="text-lg font-cutive leading-6 text-yeller"
+                  >
+                    {item.nameFour}
+                  </button>
+                </div>
               ))}
             </div>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -140,11 +158,11 @@ export default function HomePage() {
                   <div className="space-y-2 py-6">
                     {navigation.map((item) => (
                       <a
-                        key={item.name}
+                        key={item.nameOne}
                         href={item.href}
                         className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
                       >
-                        {item.name}
+                        {item.nameOne}
                       </a>
                     ))}
                   </div>
@@ -254,14 +272,17 @@ export default function HomePage() {
                 >
                   Find A House
                 </button>
-                <button className="mr-9 inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700">
+                <button
+                  className="mr-9 inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700"
+                  onClick={handleHauntListNavigate}
+                >
                   Start A Haunt
                 </button>
                 <button
-                  href="#"
+                  // onClick={handleUserProfileListNavigate}
                   className="inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700"
                 >
-                  See Our Families
+                  Make A Friend
                 </button>
               </div>
             </div>

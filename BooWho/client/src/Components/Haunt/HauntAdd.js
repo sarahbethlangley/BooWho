@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { editHouse, getHouseById } from "../../modules/houseManager";
 import { LockClosedIcon } from "@heroicons/react/20/solid";
 
-export default function HouseEdit() {
+export default function HauntAdd() {
   const { houseId } = useParams();
 
   const [edit, setEdit] = useState({
@@ -20,15 +20,15 @@ export default function HouseEdit() {
     getEditHouse();
   }, []);
 
+  const handleEditHouse = (evt) => {
+    evt.preventDefault();
+    editHouse(houseId);
+  };
+
   const handleUserInput = (evt) => {
     const copy = { ...edit };
     copy[evt.target.name] = evt.target.value;
     setEdit(copy);
-  };
-
-  const handleEditHouse = (evt) => {
-    evt.preventDefault();
-    editHouse(houseId);
   };
 
   return (
@@ -73,30 +73,4 @@ export default function HouseEdit() {
       </form>
     </>
   );
-}
-
-{
-  /* //         <p className="mt-2 text-center text-sm text-white">
-//           <div */
-}
-{
-  /* //             href="#!"
-//             className="text-md font-medium text-yeller hover:text-white"
-//           >
-//             <button
-//               className="pt-10 pb-10 text-lg font-cutive leading-6 text-yeller"
-//               onClick={(event) => {
-//                 handleSaveHouseEdit(event);
-//               }}
-//             >
-//               {" "}
-//               save house
-//               <span aria-hidden="true">&rarr;</span>
-//             </button>
-//           </div>
-//         </p>
-//       </form>
-//     </>
-//   );
-// } */
 }

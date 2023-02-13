@@ -13,7 +13,7 @@ namespace BooWho.Interfaces
         List<House> GetAllHousesByUser(string fireId);
         House GetHouseById(int id);
         void Add(House house);
-        void Update(House house);
+        void Update(int id, House house);
         void Delete(int id);
         
     }

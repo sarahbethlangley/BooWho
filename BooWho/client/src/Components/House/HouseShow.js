@@ -6,8 +6,8 @@ const HouseShow = () => {
   const [house, setHouse] = useState({});
   const { houseId } = useParams();
 
-  const getHouse = (id) => {
-    getHouseById(id).then((house) => setHouse(house));
+  const getHouse = (houseId) => {
+    getHouseById(houseId).then((house) => setHouse(house));
   };
 
   useEffect(() => {

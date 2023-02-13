@@ -25,15 +25,15 @@ namespace BooWho.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                       SELECT h.Id, h.Address, h.ImageUrl, h.Notes, h.UserProfileId,
-                              up.Name, up.ImageUrl, up.UserTypeId, 
-                              ut.Type AS UserType
+                       SELECT hh.Id, hh.Address, hh.ImageUrl AS HouseImage, hh.Notes AS HouseNotes, hh.UserProfileId,
+                              up.Name AS UserProfileName, up.ImageUrl AS UserPicture, up.UserTypeId, 
+                              ut.Type AS UserTypeType
                               
                          
-                       FROM House h
+                       FROM House hh
                          
                               
-                              LEFT JOIN UserProfile up ON h.UserProfileId = up.id
+                              LEFT JOIN UserProfile up ON hh.UserProfileId = up.id
                               LEFT JOIN UserType ut ON up.UserTypeId = ut.id
                               
                        
@@ -51,19 +51,17 @@ namespace BooWho.Repositories
                             {
                                 Id = DbUtils.GetInt(reader, "Id"),
                                 Address = DbUtils.GetString(reader, "Address"),
-                                ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                                Notes = DbUtils.GetString(reader, "Notes"),
+                                ImageUrl = DbUtils.GetString(reader, "HouseImage"),
+                                Notes = DbUtils.GetString(reader, "HouseNotes"),
                                 UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                                 UserProfile = new UserProfile()
                                 {
-                                    Id = DbUtils.GetInt(reader, "UserProfileId"),
-                                    Name = DbUtils.GetString(reader, "Name"),
-                                    ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
+                                    Name = DbUtils.GetString(reader, "UserProfileName"),
+                                    ImageUrl = DbUtils.GetString(reader, "UserPicture"),
                                     UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
                                     UserType = new UserType()
                                     {
-                                        Id = DbUtils.GetInt(reader, "UserTypeId"),
-                                        Type = DbUtils.GetString(reader, "UserType"),
+                                        Type = DbUtils.GetString(reader, "UserTypeType"),
                                     },
                                     
                                 }
@@ -86,15 +84,15 @@ namespace BooWho.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                      SELECT h.Id, h.Address, h.ImageUrl, h.Notes, h.UserProfileId,
-                              up.Name, up.ImageUrl, up.UserTypeId, up.GhostTypeId,
-                              ut.Type AS UserType,  
-                              gt.Type AS GhostType 
+                      SELECT hh.Id, hh.Address, hh.ImageUrl AS HouseImage, hh.Notes AS HouseNotes, hh.UserProfileId,
+                              up.Name AS UserProfileName, up.ImageUrl AS UserPicture, up.UserTypeId, up.GhostTypeId,
+                              ut.Type AS UserTypeType,  
+                              gt.Type AS GhostTypeType
                          
-                       FROM House h
+                       FROM House hh
                          
                               
-                              LEFT JOIN UserProfile up ON h.UserProfileId = up.id
+                              LEFT JOIN UserProfile up ON hh.UserProfileId = up.id
                               LEFT JOIN UserType ut ON u.UserTypeId = ut.id
                               LEFT JOIN GhostType gt ON u.GhostTypeId = gt.id
                      
@@ -113,25 +111,22 @@ namespace BooWho.Repositories
                         {
                             Id = DbUtils.GetInt(reader, "Id"),
                             Address = DbUtils.GetString(reader, "Address"),
-                            ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                            Notes = DbUtils.GetString(reader, "Notes"),
+                            ImageUrl = DbUtils.GetString(reader, "HouseImage"),
+                            Notes = DbUtils.GetString(reader, "HouseNotes"),
                             UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                             UserProfile = new UserProfile()
                             {
-                                Id = DbUtils.GetInt(reader, "UserProfileId"),
                                 Name = DbUtils.GetString(reader, "Name"),
-                                ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
+                                ImageUrl = DbUtils.GetString(reader, "UserPicture"),
                                 UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
                                 UserType = new UserType()
                                 {
-                                    Id = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
-                                    Type = reader.GetString(reader.GetOrdinal("UserType"))
+                                    Type = reader.GetString(reader.GetOrdinal("UserTypeType")),
                                 },
                                 GhostTypeId = DbUtils.GetInt(reader, "GhostTypeId"),
                                 GhostType = new GhostType()
                                 {
-                                    Id = DbUtils.GetInt(reader, "GhostTypeId"),
-                                    Type = DbUtils.GetString(reader, "GhostType"),
+                                    Type = DbUtils.GetString(reader, "GhostTypeType"),
                                 },
                             },
 
@@ -153,9 +148,9 @@ namespace BooWho.Repositories
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT h.Id, h.Address, h.ImageUrl, h.Notes
-                        FROM House h
-                        WHERE h.Id = @id";
+                        SELECT hh.Id, hh.Address, hh.ImageUrl AS HouseImage, hh.Notes AS HouseNotes
+                        FROM House hh
+                        WHERE hh.Id = @id";
 
                     DbUtils.AddParameter(cmd, "@id", id);
 
@@ -171,8 +166,8 @@ namespace BooWho.Repositories
                             {
                                 Id = DbUtils.GetInt(reader, "Id"),
                                 Address = DbUtils.GetString(reader, "Address"),
-                                ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                                Notes = DbUtils.GetString(reader, "Notes")
+                                ImageUrl = DbUtils.GetString(reader, "HouseImage"),
+                                Notes = DbUtils.GetString(reader, "HouseNotes")
 
 
                             };
@@ -194,10 +189,11 @@ namespace BooWho.Repositories
 
         public void Add(House house)
         {
-            using (var conn = Connection)
+            using (SqlConnection conn = Connection)
             {
                 conn.Open();
-                using (var cmd = conn.CreateCommand())
+
+                using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"INSERT INTO House (UserProfileId, Address, ImageUrl, Notes)
                                         OUTPUT INSERTED.ID
@@ -212,7 +208,7 @@ namespace BooWho.Repositories
             }
         }
 
-        public void Update(House house)
+        public void Update(int id, House house)
         {
             using (var conn = Connection)
             {
@@ -232,7 +228,7 @@ namespace BooWho.Repositories
                     DbUtils.AddParameter(cmd, "@Address", house.Address);
                     DbUtils.AddParameter(cmd, "@Notes", house.Notes);
                     DbUtils.AddParameter(cmd, "@ImageUrl", house.ImageUrl);
-                    DbUtils.AddParameter(cmd, "@Id", house.Id);
+                    DbUtils.AddParameter(cmd, "@Id", id);
 
                     cmd.ExecuteNonQuery();
                 }

@@ -1,6 +1,6 @@
 import { getToken } from "./authManager";
 
-const houseUrl = "/api/house/";
+const houseUrl = "/api/house";
 
 export const getAllHouses = () => {
   return getToken().then((token) => {
@@ -23,7 +23,7 @@ export const getAllHouses = () => {
 
 export const getHouseById = (id) => {
   return getToken().then((token) => {
-    return fetch(`${houseUrl}detail/${id}`, {
+    return fetch(`${houseUrl}/detail/${id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -89,7 +89,7 @@ export const deleteHouse = (id) => {
 
 export const editHouse = (id, house) => {
   return getToken().then((token) => {
-    return fetch(`${houseUrl}=${id}`, {
+    return fetch(`${houseUrl}/edit/${id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

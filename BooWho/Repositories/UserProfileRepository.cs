@@ -118,10 +118,11 @@ namespace BooWho.Repositories
 
         public void Add(UserProfile userProfile)
         {
-            using (var conn = Connection)
+            using (SqlConnection conn = Connection)
             {
                 conn.Open();
-                using (var cmd = conn.CreateCommand())
+
+                using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"INSERT INTO UserProfile (FirebaseUserId, Name, Email, UserTypeId, GhostTypeId, Hobbies)
                                         OUTPUT INSERTED.ID
@@ -153,7 +154,7 @@ namespace BooWho.Repositories
                             UserTypeId = @UserTypeId,
                             GhostTypeId = @GhostTypeId,
                             ImageUrl = @ImageUrl
-                        WHERE Id = @Id
+                        WHERE Id = @id
                     ";
 
                     DbUtils.AddParameter(cmd, "@Name", profile.Name);
@@ -161,7 +162,7 @@ namespace BooWho.Repositories
                     DbUtils.AddParameter(cmd, "@UserTypeId", profile.UserTypeId);
                     DbUtils.AddParameter(cmd, "@GhostTypeId", profile.GhostTypeId);
                     DbUtils.AddParameter(cmd, "@ImageUrl", profile.ImageUrl);
-                    DbUtils.AddParameter(cmd, "@Id", profile.Id);
+                    DbUtils.AddParameter(cmd, "@id", profile.Id);
 
                     cmd.ExecuteNonQuery();
                 }
