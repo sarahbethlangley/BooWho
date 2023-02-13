@@ -32,7 +32,7 @@ namespace BooWho.Controllers
             return Ok(_hauntRepository.GetAllHaunts());
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("review/{id}")]
         public IActionResult Get(int id)
         {
             var haunt = _hauntRepository.GetHauntsById(id);
@@ -64,7 +64,7 @@ namespace BooWho.Controllers
                 return BadRequest();
             }
 
-            _hauntRepository.Update(haunt);
+            _hauntRepository.Update(id, haunt);
             return NoContent();
         }
 

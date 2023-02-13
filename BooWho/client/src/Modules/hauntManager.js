@@ -1,10 +1,10 @@
 import { getToken } from "./authManager";
 
-const _hauntUrl = "/api/haunt";
+const hauntUrl = "/api/haunt";
 
 export const getAllHaunts = () => {
   return getToken().then((token) => {
-    return fetch(`${_hauntUrl}`, {
+    return fetch(hauntUrl, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -23,7 +23,7 @@ export const getAllHaunts = () => {
 
 export const getHauntDetails = (id) => {
   return getToken().then((token) => {
-    return fetch(`${_hauntUrl}/${id}`, {
+    return fetch(`${hauntUrl}/review/${id}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -42,7 +42,7 @@ export const getHauntDetails = (id) => {
 
 export const addHaunt = (userInput) => {
   return getToken().then((token) => {
-    return fetch(`${_hauntUrl}/add`, {
+    return fetch(`${hauntUrl}/add`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -65,7 +65,7 @@ export const addHaunt = (userInput) => {
 
 export const getHauntsFromUser = (firebaseId) => {
   return getToken().then((token) => {
-    return fetch(`${_hauntUrl}/myHaunts/${firebaseId}`, {
+    return fetch(`${hauntUrl}/myHaunts/${firebaseId}`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -84,7 +84,7 @@ export const getHauntsFromUser = (firebaseId) => {
 
 export const deleteHaunt = (id) => {
   return getToken().then((token) => {
-    return fetch(`${_hauntUrl}/${id}`, {
+    return fetch(`${hauntUrl}/${id}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -95,7 +95,7 @@ export const deleteHaunt = (id) => {
 
 export const editHaunt = (id, haunt) => {
   return getToken().then((token) => {
-    return fetch(`${_hauntUrl}=${id}`, {
+    return fetch(`${hauntUrl}/edit/${id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,

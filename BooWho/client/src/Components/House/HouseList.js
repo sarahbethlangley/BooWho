@@ -11,8 +11,8 @@ export default function HouseList() {
   };
 
   useEffect(() => {
-    getHouses();
-  });
+    getHouses(houseId);
+  }, [houseId]);
 
   return (
     <>

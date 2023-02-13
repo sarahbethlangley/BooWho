@@ -1,4 +1,5 @@
-﻿using BooWho.Models;
+﻿using System;
+using BooWho.Models;
 using BooWho.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Data.SqlClient;
@@ -19,17 +20,17 @@ namespace BooWho.Repositories
 
         public List<Haunt> GetAllHaunts()
         {
-            using (var conn = Connection)
+            using (SqlConnection conn = Connection)
             {
                 conn.Open();
-                using (var cmd = conn.CreateCommand())
+                using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                       SELECT h.Id, h.HouseId, h.Notes, h.UserProfileId,
-                              hh.Address, hh.ImageUrl, hh.Notes,
-                              up.Name, up.ImageUrl, up.UserTypeId, up.GhostTypeId,
-                              ut.Type AS UserType,  
-                              gt.Type AS GhostType 
+                       SELECT h.Id, h.HouseId, h.Notes AS HauntNotes, h.UserProfileId,
+                              hh.Address, hh.ImageUrl AS HouseImage, hh.Notes AS HouseNotes,
+                              up.Name AS UserProfileName, up.ImageUrl AS UserPicture, up.UserTypeId, up.GhostTypeId,
+                              ut.Type AS UserTypeType,  
+                              gt.Type AS GhostTypeType 
                          
 
 
@@ -41,51 +42,21 @@ namespace BooWho.Repositories
                               LEFT JOIN GhostType gt ON up.GhostTypeId = gt.id
                                 ";
 
-                    var reader = cmd.ExecuteReader();
-
-                    var haunts = new List<Haunt>();
-
-                    while (reader.Read())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        haunts.Add(new Haunt()
+
+                        var haunts = new List<Haunt>();
+
+                        while (reader.Read())
                         {
-                            Id = DbUtils.GetInt(reader, "Id"),
-                            HouseId = DbUtils.GetInt(reader, "HouseId"),
-                            House = new House()
-                            {
-                                Id = DbUtils.GetInt(reader, "HouseId"),
-                                Address = DbUtils.GetString(reader, "Address"),
-                                ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                                Notes = DbUtils.GetString(reader, "Notes"),
-                               
-                            },
-                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                            UserProfile = new UserProfile()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserProfileId"),
-                                Name = DbUtils.GetString(reader, "Name"),
-                                ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                                UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                                UserType = new UserType()
-                                {
-                                    Id = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
-                                    Type = reader.GetString(reader.GetOrdinal("UserType"))
-                                },
-                                GhostTypeId = DbUtils.GetInt(reader, "GhostTypeId"),
-                                GhostType = new GhostType()
-                                {
-                                    Id = DbUtils.GetInt(reader, "GhostTypeId"),
-                                    Type = DbUtils.GetString(reader, "GhostType"),
-                                },
-                            },
+                            haunts.Add(NewHaunt(reader));
 
 
-                        });
+                            
+                        }
+
+                        return haunts;
                     }
-
-                    reader.Close();
-
-                    return haunts;
                 }
             }
         }
@@ -100,16 +71,16 @@ namespace BooWho.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                      SELECT h.Id, h.UserProfileId, h.HouseId, h.Notes
-                             hh.Address, hh.ImageUrl, hh.Notes,
-                             up.Name, up.ImageUrl, up.UserTypeId, up.GhostTypeId,
-                             ut.Type AS UserType,  
-                             gt.Type AS GhostType 
+                      SELECT h.Id, h.UserProfileId, h.HouseId, h.Notes AS HauntNotes
+                             hh.Address, hh.ImageUrl AS HouseImage, hh.Notes AS HouseNotes,
+                             up.Name AS UserProfileName, up.ImageUrl AS UserPicture, up.UserTypeId, up.GhostTypeId,
+                             ut.Type AS UserTypeType,  
+                             gt.Type AS GhostTypeType 
                         FROM Haunt h
                               LEFT JOIN UserProfile up ON h.UserProfileId = up.id
                               LEFT JOIN House hh ON h.HouseId = hh.id
                               LEFT JOIN UserType ut ON up.UserTypeId = ut.id
-                              LEFT JOIN GhostType gt ON up.UserTypeId = gt.id
+                              LEFT JOIN GhostType gt ON h.GhostTypeId = gt.id
                         WHERE u.FirebaseUserId = @fireId
                          ";
 
@@ -120,40 +91,7 @@ namespace BooWho.Repositories
 
                     while (reader.Read())
                     {
-                        haunts.Add(new Haunt()
-                        {
-                            Id = DbUtils.GetInt(reader, "Id"),
-                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                            UserProfile = new UserProfile()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserProfileId"),
-                                Name = DbUtils.GetString(reader, "Name"),
-                                ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                                UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                                UserType = new UserType()
-                                {
-                                    Id = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
-                                    Type = reader.GetString(reader.GetOrdinal("UserType"))
-                                },
-                                GhostTypeId = DbUtils.GetInt(reader, "GhostTypeId"),
-                                GhostType = new GhostType()
-                                {
-                                    Id = DbUtils.GetInt(reader, "GhostTypeId"),
-                                    Type = DbUtils.GetString(reader, "GhostType"),
-                                },
-                            },
-                            HouseId = DbUtils.GetInt(reader, "HouseId"),
-                            House = new House()
-                            {
-                                Id = DbUtils.GetInt(reader, "HouseId"),
-                                Address = DbUtils.GetString(reader, "Address"),
-                                ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                                Notes = DbUtils.GetString(reader, "Notes"),
-
-                            },
-                            Notes = DbUtils.GetString(reader, "Notes")
-
-                        });
+                        haunts.Add(NewHaunt(reader));
                     }
 
                     reader.Close();
@@ -163,26 +101,43 @@ namespace BooWho.Repositories
             }
         }
 
-        public object GetHauntsById(int id)
+        public Haunt GetHauntsById(int id)
         {
-            using (var conn = Connection)
+            using (SqlConnection conn = Connection)
             {
                 conn.Open();
-                using (var cmd = conn.CreateCommand())
+                using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = HauntQuery + " WHERE q.id = @Id";
-                    DbUtils.AddParameter(cmd, "@Id", id);
+                    cmd.CommandText = @"SELECT 
 
-                    Haunt haunt = null;
+                                h.Id, h.UserProfileId, h.GhostTypeId, h.HouseId, h.Notes AS HauntNotes,
+                                hh.Address, hh.ImageUrl AS HouseImage, hh.Notes AS HouseNotes,
+                                up.Name AS UserProfileName, up.ImageUrl AS UserPicture, UserTypeId,
+                                ut.Type AS UserTypeType,
+                                gt.Type AS GhostTypeType
 
-                    var reader = cmd.ExecuteReader();
-                    if (reader.Read())
+                           FROM Haunt h
+                                
+                                LEFT JOIN UserProfile up on h.UserProfileId = up.Id
+                                LEFT JOIN UserType ut on up.UserTypeId = ut.Id
+                                lEFT JOIN GhostType gt on h.GhostTypeId = gt.Id
+                                LEFT JOIN House hh on h.HouseId = hh.Id
+                                WHERE h.Id = @id";
+
+                    DbUtils.AddParameter(cmd, "@id", id);
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        haunt = NewHaunt(reader);
-                    }
-                    reader.Close();
 
-                    return haunt;
+                        Haunt haunt = null;
+                        if (reader.Read())
+                        {
+                            haunt = NewHaunt(reader);
+                        }
+
+                        return haunt;
+
+                    }
                 }
             }
         }
@@ -206,7 +161,7 @@ namespace BooWho.Repositories
             }
         }
 
-        public void Update(Haunt haunt)
+        public void Update(int id, Haunt haunt)
         {
             using (var conn = Connection)
             {
@@ -220,12 +175,12 @@ namespace BooWho.Repositories
                                Notes = @Notes,
                                ImageUrl = @ImageUrl,
                             
-                         WHERE Id = @Id";
+                         WHERE Id = @id";
 
                     DbUtils.AddParameter(cmd, "@UserProfileId", haunt.UserProfileId);
                     DbUtils.AddParameter(cmd, "@HouseId", haunt.HouseId);
                     DbUtils.AddParameter(cmd, "@Notes", haunt.Notes);
-                    DbUtils.AddParameter(cmd, "@Id", haunt.Id);
+                    DbUtils.AddParameter(cmd, "@id", id);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -251,62 +206,44 @@ namespace BooWho.Repositories
             }
         }
 
-        private string HauntQuery
+        public Haunt NewHaunt(SqlDataReader reader)
         {
-            get
-            {
-                return @"SELECT h.Id, h.UserProfileId, h.HouseId, h.Notes,
-                                hh.Address, hh.ImageUrl, hh.Notes,
-                                up.Name AS UserProfileName, up.ImageUrl, up.UserTypeId, up.GhostTypeId,
-                                ut.Type AS UserType,
-                                gt.Type AS GhostType
-                           FROM Haunt h
-                                LEFT JOIN UserProfile up on h.UserProfileId = up.Id
-                                LEFT JOIN House hh on up.UserTypeId = hh.Id
-                                LEFT JOIN UserType ut on up.UserTypeId = ut.Id
-                                LEFT JOIN GhostType gt on up.UserTypeId = gt.Id";
-            }
-        }
-
-        private Haunt NewHaunt(SqlDataReader reader)
-        {
-            return new Haunt()
+            return new Haunt
             {
                 Id = DbUtils.GetInt(reader, "Id"),
-                UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
-                UserProfile = new UserProfile()
-                {
-                    Id = DbUtils.GetInt(reader, "UserProfileId"),
-                    Name = DbUtils.GetString(reader, "UserProfileName"),
-                    ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                    UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                    UserType = new UserType()
-                    {
-                        Id = reader.GetInt32(reader.GetOrdinal("UserTypeId")),
-                        Type = reader.GetString(reader.GetOrdinal("UserType"))
-                    },
-                    GhostTypeId = DbUtils.GetInt(reader, "GhostTypeId"),
-                    GhostType = new GhostType()
-                    {
-                        Id = DbUtils.GetInt(reader, "GhostTypeId"),
-                        Type = DbUtils.GetString(reader, "GhostType"),
-                    },
-                },
                 HouseId = DbUtils.GetInt(reader, "HouseId"),
-                House = new House()
+                House = new House
                 {
-                    Id = DbUtils.GetInt(reader, "HouseId"),
+
                     Address = DbUtils.GetString(reader, "Address"),
-                    ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                    Notes = DbUtils.GetString(reader, "Notes"),
+                    ImageUrl = DbUtils.GetString(reader, "HouseImage"),
+                    Notes = DbUtils.GetString(reader, "HouseNotes"),
 
                 },
-                Notes = DbUtils.GetString(reader, "Notes")
+                UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                UserProfile = new UserProfile
+                {
+                   
+                    Name = DbUtils.GetString(reader, "UserProfileName"),
+                    ImageUrl = DbUtils.GetString(reader, "UserPicture"),
+                    
+                },
+                UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
+                UserType = new UserType
+                {
+                    Type = DbUtils.GetString(reader, "UserTypeType"),
+                },
+                GhostTypeId = DbUtils.GetInt(reader, "GhostTypeId"),
+                GhostType = new GhostType
+                {
+
+                    Type = DbUtils.GetString(reader, "GhostTypeType"),
+                },
+                
+                Notes = DbUtils.GetString(reader, "HauntNotes")
 
             };
         }
-
-
 
     }
 }

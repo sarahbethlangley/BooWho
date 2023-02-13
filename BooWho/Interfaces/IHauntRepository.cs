@@ -10,9 +10,9 @@ namespace BooWho.Interfaces
     {
         List<Haunt> GetAllHaunts();
         List<Haunt> GetAllHauntsByUser(string fireId);
-        object GetHauntsById (int id);
+        Haunt GetHauntsById (int id);
         void Add(Haunt haunt);
-        void Update(Haunt haunt);
+        void Update(int id, Haunt haunt);
         void Delete(int id);
         
     }
