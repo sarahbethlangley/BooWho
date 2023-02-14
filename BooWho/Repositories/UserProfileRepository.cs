@@ -1,8 +1,11 @@
 ﻿using BooWho.Models;
+using BooWho.Interfaces;
 using Microsoft.Extensions.Configuration;
 using BooWho.Utils;
 using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Hosting;
+
 
 namespace BooWho.Repositories
 {
@@ -13,55 +16,50 @@ namespace BooWho.Repositories
 
         public List<UserProfile> GetAllUsers()
         {
-            using (var conn = Connection)
+            using (SqlConnection conn = Connection)
             {
                 conn.Open();
-                using (var cmd = conn.CreateCommand())
+                using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        SELECT up.Id, up.FirebaseUserId, up.Name, up.Email, up.ImageUrl, up.Hobbies
-                               up.UserTypeId, ut.Id, ut.Name AS UserTypeName, up.GhostTypeId, gt.Id, gt.Name AS GhostTypeName
+                        SELECT up.Id, up.Name, up.ImageUrl, up.Hobbies,
+                               up.UserTypeId,                             
+                               ut.Type AS UserTypeName
 
                         
 
                         FROM UserProfile up
                         LEFT JOIN UserType ut on up.UserTypeId = ut.Id
-                        LEFT JOIN GhostType gt on up.GhostTypeId = gt.Id
+                        
                         
                     ";
 
-                    List<UserProfile> profiles = new List<UserProfile>();
-
-                    var reader = cmd.ExecuteReader();
-                    while (reader.Read())
+                    using SqlDataReader reader = cmd.ExecuteReader();
                     {
-                        UserProfile profile = new UserProfile()
-                        {
-                            Id = DbUtils.GetInt(reader, "Id"),
-                            FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
-                            Name = DbUtils.GetString(reader, "UserProfileName"),
-                            Email = DbUtils.GetString(reader, "Email"),
-                            ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
-                            Hobbies  = DbUtils.GetString(reader, "Hobbies"),
-                            UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
-                            
-                            UserType = new UserType()
-                            {
-                                Id = DbUtils.GetInt(reader, "UserTypeId"),
-                                Type = DbUtils.GetString(reader, "UserTypeName"),
-                            },
-                            GhostTypeId = DbUtils.GetInt(reader, "GhostTypeId"),
-                            GhostType = new GhostType()
-                            {
-                                Id = DbUtils.GetInt(reader, "GhostTypeId"),
-                                Type = DbUtils.GetString(reader, "GhostTypeName"),
-                            }
-                        };
-                        profiles.Add(profile);
-                    }
-                    reader.Close();
+                        var profiles = new List<UserProfile>();
 
-                    return profiles;
+                        while (reader.Read())
+                        {
+                            profiles.Add(new UserProfile
+                            {
+                                Id = DbUtils.GetInt(reader, "Id"),
+                                Name = DbUtils.GetString(reader, "Name"),
+                                ImageUrl = DbUtils.GetString(reader, "ImageUrl"),
+                                Hobbies = DbUtils.GetString(reader, "Hobbies"),
+                                UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
+                                UserType = new UserType()
+                                {
+
+                                    Type = DbUtils.GetString(reader, "UserTypeName"),
+                                }
+
+                            });
+
+                        }
+                        return profiles;
+
+
+                    }
                 }
             }
         }
