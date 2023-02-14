@@ -11,12 +11,6 @@
 //   });
 
 //   const navigate = useNavigate();
-//   const handleSelectHouse = (hos) => {
-//     const copy = { ...userChoices };
-//     copy.houseId = parseInt(hos.id);
-//     copy.address = hos.address;
-//     setUserChoices(copy);
-//   };
 
 //   const handleSaveHouse = (event) => {
 //     event.preventDefault();

@@ -33,7 +33,7 @@ namespace BooWho.Controllers
         }
 
         [HttpGet("review/{id}")]
-        public IActionResult Get(int id)
+        public IActionResult GetById(int id)
         {
             var haunt = _hauntRepository.GetHauntsById(id);
             if (haunt != null)
@@ -46,17 +46,13 @@ namespace BooWho.Controllers
         [HttpPost]
         public IActionResult Post(Haunt haunt)
         {
-            var currentUserProfile = GetCurrentUserProfile();
-            if (currentUserProfile.UserType.Type != "Ghost")
-            {
-                return Unauthorized();
-            }
-            haunt.UserProfileId = currentUserProfile.Id;
+            UserProfile user = GetCurrentUserProfile();
+            haunt.UserProfileId = user.Id;
             _hauntRepository.Add(haunt);
-            return CreatedAtAction(nameof(Get), new { id = haunt.Id }, haunt);
+            return CreatedAtAction(nameof(GetById), new { haunt.Id }, haunt);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("edit/{id}")]
         public IActionResult Put(int id, Haunt haunt)
         {
             if (id != haunt.Id)

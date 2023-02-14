@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import HauntList from "./Haunt/HauntList";
-// import HauntAdd from "./Haunt/HauntAdd";
+import HauntAdd from "./Haunt/HauntAdd";
 import HauntShow from "./Haunt/HauntShow";
 import HauntEdit from "./Haunt/HauntEdit";
 import HouseList from "./House/HouseList";
-// import HouseAdd from "./House/HouseAdd";
 import HouseShow from "./House/HouseShow";
-import HouseEdit from "./House/HouseEdit";
-// import UserDetails from "./User/UserProfileDetails";
-// import UserList from "./User/UserProfileList";
+// import HouseAdd from "./House/HouseAdd";
+// import HouseEdit from "./House/HouseEdit";
+// import UserDetails from "./UserProfile/UserProfileDetails";
+import UserProfileList from "./UserProfile/UserProfileList";
 import HomePage from "./Pages/HomePage";
 import HeroPage from "./Pages/HeroPage";
 import Login from "./Auth/Login";
@@ -26,11 +26,13 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="boowho" element={<HeroPage />} />
         <Route path="boohome" element={<HomePage />} />
         <Route path="house" element={<HouseList />} />
-        <Route path="detail/:houseId" element={<HouseShow />} />
-        <Route path="edit/:houseId" element={<HouseEdit />} />
+        <Route path="house/detail/:id" element={<HouseShow />} />
+        {/* <Route path="house/edit/:id" element={<HouseEdit />} /> */}
         <Route path="haunt" element={<HauntList />} />
-        <Route path="review/:hauntId" element={<HauntShow />} />
-        <Route path="edit/:hauntId" element={<HauntEdit />} />
+        <Route path="haunt/review/:id" element={<HauntShow />} />
+        <Route path="haunt/edit/:id" element={<HauntEdit />} />
+        <Route path="haunt/add" element={<HauntAdd />} />
+        <Route path="userProfile" element={<UserProfileList />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="*" element={<p>Whoops, nothing here...</p>} />
@@ -41,11 +43,11 @@ export default function ApplicationViews({ isLoggedIn }) {
 
 // {/* */}
 //         {/* <Route path="house/add" element={<HouseAdd />} /> */}
-//         {/* <Route path="userprofile" element={<UserList />} />
+//         {/*
 //         <Route path="myhouse" element={<MyHouse />} />
 //
 //         {/*  */}
-//         {/* <Route path="haunt/add" element={<HauntForm />} />
+//         {/*
 //         } /> */}
 //         {/* <Route path="userprofile/details" element={<UserDetails />} /> */} */}
 //         {/* <Route

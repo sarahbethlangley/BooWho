@@ -1,16 +1,14 @@
 import { useState } from "react";
 
-import { useNavigate, Link } from "react-router-dom";
-import { Dialog } from "@headlessui/react";
+import { useNavigate } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { logout } from "../../modules/authManager";
-import { HouseList } from "../House/HouseList";
 
 const navigation = [
-  { nameOne: "Active Haunts" },
+  { nameOne: "Haunt Reviews" },
   { nameTwo: "Available Houses" },
-  { nameThree: "Ghosts and Families" },
-  { nameFour: "My Profile" },
+  { nameThree: "Living and Deceased" },
+  { nameFour: "Home" },
 ];
 
 export default function HomePage() {
@@ -23,6 +21,18 @@ export default function HomePage() {
   };
   const handleHauntListNavigate = () => {
     navigate("/haunt");
+  };
+
+  const handleNavigate = () => {
+    navigate("/boohome");
+  };
+
+  const handleHauntAddNavigate = () => {
+    navigate(`/haunt/add`);
+  };
+
+  const handleUserProfileListNavigate = () => {
+    navigate("/userProfile");
   };
 
   const logoutSubmit = () => {
@@ -86,8 +96,8 @@ export default function HomePage() {
               </button>
             </div>
             <div className="hidden lg:flex lg:gap-x-12">
-              {navigation.map((item) => (
-                <div>
+              {navigation.map((item, index) => (
+                <div key={index}>
                   <button
                     key={item.nameOne}
                     onClick={handleHauntListNavigate}
@@ -104,14 +114,14 @@ export default function HomePage() {
                   </button>
                   <button
                     key={item.nameThree}
-                    // onClick={handleUserProfileListNavigate}
+                    onClick={handleUserProfileListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameThree}
                   </button>
                   <button
                     key={item.nameFour}
-                    // onClick={handleUserProfileNavigate}
+                    onClick={handleNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameFour}
@@ -130,51 +140,6 @@ export default function HomePage() {
               </button>
             </div>
           </nav>
-          <Dialog as="div" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
-            <Dialog.Panel
-              focus="true"
-              className="fixed inset-0 z-10 overflow-y-auto bg-spooky px-6 py-6 lg:hidden"
-            >
-              <div className="flex items-center justify-between">
-                <a href="#" className="-m-1.5 p-1.5">
-                  <span className="sr-only">Your Company</span>
-                  <img
-                    className="h-24"
-                    src={require("../../assetts/navlogo.png")}
-                    alt=""
-                  />
-                </a>
-                <button
-                  type="button"
-                  className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span className="sr-only">Close menu</span>
-                  <XMarkIcon className="h-6 w-6" aria-hidden="true" />
-                </button>
-              </div>
-              <div className="mt-6 flow-root">
-                <div className="-my-6 divide-y divide-gray-500/10">
-                  <div className="space-y-2 py-6">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.nameOne}
-                        href={item.href}
-                        className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-400/10"
-                      >
-                        {item.nameOne}
-                      </a>
-                    ))}
-                  </div>
-                  <div className="py-6">
-                    <button className="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-6 text-gray-900 hover:bg-gray-400/10">
-                      Log in
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </Dialog.Panel>
-          </Dialog>
         </div>
         <div>
           <div className="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
@@ -274,15 +239,15 @@ export default function HomePage() {
                 </button>
                 <button
                   className="mr-9 inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700"
-                  onClick={handleHauntListNavigate}
+                  onClick={handleHauntAddNavigate}
                 >
                   Start A Haunt
                 </button>
                 <button
-                  // onClick={handleUserProfileListNavigate}
+                  onClick={handleUserProfileListNavigate}
                   className="inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700"
                 >
-                  Make A Friend
+                  Make Friends
                 </button>
               </div>
             </div>
@@ -290,26 +255,26 @@ export default function HomePage() {
         </div>
       </div>
       <div className="pt-16 mr-40">
-        <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-          <div class="md:flex">
-            <div class="md:shrink-0">
+        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+          <div className="md:flex">
+            <div className="md:shrink-0">
               <img
-                class="h-48 w-full object-cover md:h-full md:w-48"
+                className="h-48 w-full object-cover md:h-full md:w-48"
                 src={require("../../assetts/littleghost.jpg")}
                 alt="loving ghost"
               />
             </div>
-            <div class="p-8">
-              <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+            <div className="p-8">
+              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
                 So many houses to haunt...
               </div>
               <a
                 href="#"
-                class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+                className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
               >
                 Our Haunting opportunities are updated daily
               </a>
-              <p class="mt-2 text-slate-500">
+              <p className="mt-2 text-slate-500">
                 Cabins, apartments, even classic Victorian, as soon as a family
                 lists their home on BooWho!?, their listing is available for you
                 to book a Haunt immediately
@@ -319,26 +284,26 @@ export default function HomePage() {
         </div>
       </div>
       <div className="pt-16 pb-16 ml-60">
-        <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-          <div class="md:flex">
-            <div class="md:shrink-0">
+        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+          <div className="md:flex">
+            <div className="md:shrink-0">
               <img
-                class="h-48 w-full object-cover md:h-full md:w-48"
+                className="h-48 w-full object-cover md:h-full md:w-48"
                 src={require("../../assetts/plant.gif")}
                 alt="loving ghost"
               />
             </div>
-            <div class="p-8">
-              <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+            <div className="p-8">
+              <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
                 Connect with other ghosts
               </div>
               <a
                 href="#"
-                class="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
+                className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
               >
                 Don't let death stand in the way of friendship
               </a>
-              <p class="mt-2 text-slate-500">
+              <p className="mt-2 text-slate-500">
                 Not only does BooWho?! connect you with houses to haunt, we
                 connect you with other ghosts too. Make a new friend today and
                 go on a Haunt together.

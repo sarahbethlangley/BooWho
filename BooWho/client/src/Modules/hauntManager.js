@@ -40,25 +40,15 @@ export const getHauntDetails = (id) => {
   });
 };
 
-export const addHaunt = (userInput) => {
+export const addHaunt = (haunt) => {
   return getToken().then((token) => {
-    return fetch(`${hauntUrl}/add`, {
+    return fetch(hauntUrl, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(userInput),
-    }).then((resp) => {
-      if (resp.ok) {
-        return resp.json();
-      } else if (resp.status === 401) {
-        throw new Error("Unauthorized");
-      } else {
-        throw new Error(
-          "An unknown error occurred while trying to add a new post."
-        );
-      }
+      body: JSON.stringify(haunt),
     });
   });
 };

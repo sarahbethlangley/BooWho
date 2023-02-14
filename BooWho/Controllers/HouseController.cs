@@ -38,7 +38,7 @@ namespace BooWho.Controllers
             return Ok(tags);
         }
 
-        [HttpGet("myHouse/{firebaseUserId}")]
+        [HttpGet("{firebaseUserId}")]
         public IActionResult GetByFirebaseUserId(string firebaseUserId)
         {
             var userHouses = _houseRepository.GetAllHousesByUser(firebaseUserId);
@@ -62,17 +62,13 @@ namespace BooWho.Controllers
             return Ok(house);
         }
 
-        [HttpPost]
+        [HttpPost()]
         public IActionResult Post(House house)
         {
-            var currentUserProfile = GetCurrentUserProfile();
-            if (currentUserProfile.UserType.Type != "family")
-            {
-                return Unauthorized();
-            }
-            house.UserProfileId = currentUserProfile.Id;
+            UserProfile user = GetCurrentUserProfile();
+            house.UserProfileId = user.Id;
             _houseRepository.Add(house);
-            return CreatedAtAction(nameof(Get), new { id = house.Id }, house);
+            return CreatedAtAction(nameof(GetById), new { id = house.Id }, house);
         }
 
         [HttpPut("{id}")]
