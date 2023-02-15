@@ -33,10 +33,6 @@ export default function HauntEdit() {
     });
   }, []);
 
-  const handleUserInput = (evt) => {
-    setInput(input);
-    setReview(evt.target.value);
-  };
   const handleHauntEdit = (evt) => {
     evt.preventDefault();
     editHaunt(id, {
@@ -45,6 +41,11 @@ export default function HauntEdit() {
       userProfileId: userProfileId,
       review: review,
     }).then(() => navigate(`/haunt/review/${id}`));
+
+    const handleUserInput = (evt) => {
+      setInput(input);
+      setReview(evt.target.value);
+    };
 
     const handleHauntDelete = (evt) => {
       evt.preventDefault();

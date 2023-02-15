@@ -140,38 +140,60 @@ export default function HouseList() {
             </div>
           </nav>
         </div>
-        <h2>Houses</h2>
-        <section>
-          {houses.map((h) => (
-            <div key={h.id} className="pt-16">
-              <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                <div className="md:flex">
-                  <div className="md:shrink-0">
-                    <img
-                      className="h-48 w-full object-cover md:h-full md:w-48"
-                      src={h.imageUrl}
-                      alt="house"
-                    />
-                  </div>
-                  <div className="p-8">
-                    <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                      {h.address}
+        <div className="relative px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 float-left">
+            <div>
+              <h1 className="text-center text-4xl font-fijole leading-8 text-white sm:text-6xl">
+                Temporary Haunts...{"  "}Lifetime Trauma
+              </h1>
+              <p className="mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-300">
+                Start haunting a new house today by booking one of BooWho's
+                temporary haunting placements. Remember, we guarentee no
+                exorcisms or salt circles, and you can cancel your Haunt at
+                anytime.
+              </p>
+              <div className="mt-10 flex items-center justify-center gap-x-6">
+                <button
+                  className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  onClick={handleHauntAddNavigate}
+                >
+                  Book a Haunt
+                </button>
+              </div>
+            </div>
+          </div>
+          <section>
+            {houses.map((h) => (
+              <div key={h.id} className="pt-16">
+                <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
+                  <div className="md:flex">
+                    <div className="md:shrink-0">
+                      <img
+                        className="h-48 w-full object-cover md:h-full md:w-48"
+                        src={h.imageUrl}
+                        alt="house"
+                      />
                     </div>
-                    <div className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                      you could haunt this...
+                    <div className="p-8">
+                      <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                        {h.address}
+                      </div>
+                      <div className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+                        {h.notes}
+                      </div>
+                      <p className="mt-2 text-slate-500">check it out</p>
+                      <Link to={`/house/detail/${h.id}`}>
+                        <button className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                          book now
+                        </button>
+                      </Link>
                     </div>
-                    <p className="mt-2 text-slate-500">check it out</p>
-                    <Link to={`/house/detail/${h.id}`}>
-                      <button className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                        Show details
-                      </button>
-                    </Link>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </section>
+            ))}
+          </section>
+        </div>
       </div>
     </>
   );

@@ -6,7 +6,7 @@ import { logout } from "../../modules/authManager";
 const navigation = [
   { nameOne: "Haunt Reviews" },
   { nameTwo: "Available Houses" },
-  { nameThree: "The Living and the Dead" },
+  { nameThree: "Living and Deceased" },
   { nameFour: "Home" },
 ];
 
@@ -135,40 +135,54 @@ export default function UserProfileList() {
             </div>
           </nav>
         </div>
-        <h2>A list of available users to connect with</h2>
-        <section>
-          {users.map((u) => (
-            <div key={u.id} className="pt-16">
-              <div className="max-w-md mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
-                <div className="md:flex">
-                  <div className="md:shrink-0">
-                    <img
-                      className="h-48 w-full object-cover md:h-full md:w-48"
-                      src={u.imageUrl}
-                      alt="house"
-                    />
-                  </div>
-                  <div class="p-8">
-                    <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                      {u.name}
-                      {"  "}
-                      {u?.userType?.type}
+        <div className="relative px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 float-left">
+            <div>
+              <h1 className="text-center text-4xl font-fijole leading-8 text-white sm:text-6xl">
+                Meet the Families
+              </h1>
+              <p className="mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-300">
+                Our Families want to meet you. We ensure that the haunting
+                opportunities you find on BooWho?! are with families that want
+                you in their homes. No exorcisms, no salt circles. Everyone in
+                the paranormal community is welcomed by the families on BooWho?!
+              </p>
+            </div>
+          </div>
+          <section>
+            {users.map((u) => (
+              <div key={u.id} className="pt-16">
+                <div className="max-w-md mx-auto bg-white rounded-xl shadow-md md:max-w-2xl">
+                  <div className="md:flex">
+                    <div className="md:shrink-0">
+                      <img
+                        className="h-48 w-full object-cover md:h-full md:w-48"
+                        src={u.imageUrl}
+                        alt="house"
+                      />
                     </div>
-                    <div className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                      learn more
+                    <div class="p-8">
+                      <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+                        {u.name}
+                        {"  "}
+                        {u?.userType?.type}
+                      </div>
+                      <div className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
+                        learn more
+                      </div>
+                      <p class="mt-2 text-slate-500">check it out</p>
+                      <Link to={`/detail/${u.id}`}>
+                        <button className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                          See our house
+                        </button>
+                      </Link>
                     </div>
-                    <p class="mt-2 text-slate-500">check it out</p>
-                    <Link to={`/detail/${u.id}`}>
-                      <button className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                        See our house
-                      </button>
-                    </Link>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </section>
+            ))}
+          </section>
+        </div>
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { getHauntDetails } from "../../modules/hauntManager";
+
 import { logout } from "../../modules/authManager";
 
 const navigation = [
@@ -145,12 +146,12 @@ const HauntShow = () => {
 
           <div className="pt-16 object-position: center">
             <img
-              className="h-auto w-auto object-top-left"
+              className="h-96 w-full object-top-left"
               src={haunt?.userProfile?.imageUrl}
               alt="loving ghost"
             />
             <img
-              className="h-auto w-auto object-right-top"
+              className="h-96 w-full object-right-top"
               src={haunt?.house?.imageUrl}
               alt="loving ghost"
             />
