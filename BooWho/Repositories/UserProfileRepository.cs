@@ -99,12 +99,13 @@ namespace BooWho.Repositories
                                 Id = DbUtils.GetInt(reader, "UserTypeId"),
                                 Type = DbUtils.GetString(reader, "UserTypeType"),
                             },
-                            GhostTypeId = DbUtils.GetInt(reader, "GhostTypeId"),
-                            GhostType = new GhostType()
+                            GhostTypeId = DbUtils.GetNullableInt(reader, "GhostTypeId"),
+                            GhostType = !DbUtils.IsDbNull(reader, "GhostTypeId") ? new GhostType()
                             {
                                 Id = DbUtils.GetInt(reader, "GhostTypeId"),
                                 Type = DbUtils.GetString(reader, "GhostType"),
-                            }
+                            }: null
+
                         };
                     }
                     reader.Close();

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { getAllHaunts } from "../../modules/hauntManager";
-// import { getHouseById } from "../../modules/houseManager";
 import { logout } from "../../modules/authManager";
 
 const navigation = [
@@ -13,7 +12,6 @@ const navigation = [
 
 export default function HauntList() {
   const [haunts, setHaunts] = useState([]);
-  const [house, setHouse] = useState({});
   const { id } = useParams();
 
   const getHaunts = () => {
@@ -23,14 +21,6 @@ export default function HauntList() {
   useEffect(() => {
     getHaunts();
   }, []);
-
-  // const getHouse = (houseId) => {
-  //   getHouseById(houseId).then((house) => setHouse(house));
-  // };
-
-  // useEffect(() => {
-  //   getHouse(house.id);
-  // }, [house.id]);
 
   const navigate = useNavigate();
 
@@ -44,10 +34,6 @@ export default function HauntList() {
   const handleHauntAddNavigate = () => {
     navigate(`/haunt/add/${id}`);
   };
-
-  // const handleHouseDetailNavigate = () => {
-  //   navigate(`/house/detail/${houseId}`);
-  // };
 
   const handleUserProfileListNavigate = () => {
     navigate("/userProfile");
@@ -153,65 +139,55 @@ export default function HauntList() {
             </div>
           </nav>
         </div>
-        <h2>
-          See what our ghosts are saying about their temporary haunting
-          placements
-        </h2>
+        <div className="relative px-6 lg:px-8">
+          <div className="pb-36 mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 float-left">
+            <div>
+              <h1 className="mr-16 text-center text-4xl font-fijole leading-8 text-white sm:text-6xl">
+                Read About A Haunt Before You Book Your Own{"  "}
+              </h1>
+              <p className="mr-16 mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-400">
+                Read about the experiences of the paranormal with BooWho?!'s
+                Haunts. Spooks who booked a Haunt through BooWho?! are
+                guarenteed no exorcisms or salt circles, and you can cancel your
+                Haunt at anytime.
+              </p>
+              <button
+                className="pt-10 text-lg font-cutive leading-6 text-yeller"
+                onClick={handleHauntAddNavigate}
+              >
+                {" "}
+                or start a Haunt today
+                <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </div>
 
-        <section className="justify-between">
-          {haunts.map((hh) => (
-            <div
-              key={hh.id}
-              className="pt-24 max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl"
-            >
-              <div className="md:flex">
-                <div className="md:shrink">
-                  <img
-                    className="h-auto w-auto object-cover"
-                    src={hh?.userProfile?.imageUrl}
-                    alt="haunt"
-                  />
-                </div>
-                <div>
-                  <h1 className="uppercase tracking-wide text-2xl text-indigo-500 font-semibold">
+          <div className="pt-36 bg-smoke grid xl:grid-cols-4 gap-8">
+            {haunts.map((hh) => (
+              <div key={hh.id}>
+                <div class="flex flex-col items-center p-8 transition-colors duration-200 transform cursor-pointer group hover:bg-smoke rounded-xl">
+                  <Link to={`/haunt/review/${hh.id}`}>
+                    <img
+                      class="object-cover w-32 h-32 rounded-full ring-4 bg-white ring-gray-300"
+                      src={hh?.userProfile?.imageUrl}
+                      alt="ghost"
+                    />
+                  </Link>
+
+                  <h1 class="mt-4 text-2xl font-frijole text-white capitalize group-hover:text-yellow-500">
                     {hh?.userProfile?.name}
                   </h1>
-                  <h1 className="uppercase tracking-wide text-2xl text-indigo-500 font-semibold">
-                    {hh?.userProfile?.ghostType?.type}
-                  </h1>
-                </div>
-                <div className="p-8">
-                  <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                    Haunt is active
-                  </div>
-                  {/* <button
-                      className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"
-                      onClick={handleHouseDetailNavigate}
-                    >
-                      House details
-                    </button> */}
-                </div>
-                <div className="p-8">
-                  <p className="mt-2 text-slate-500">
-                    {hh?.userProfile?.name}'s Haunt Review
+                  <p class="text-md font-frijole text-white group-hover:text-yellow-500">
+                    {hh?.ghostType?.type}
                   </p>
-                  <Link to={`/haunt/review/${hh.id}`}>
-                    <button className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                      Read here
-                    </button>
-                  </Link>
+                  <p className="text-md font-frijole text-white group-hover:text-yellow-500"></p>
+                  <h4 class="mt-2 text-lg font-frijole text-white capitalize group-hover:text-yellow-500">
+                    {hh?.house?.address}
+                  </h4>
                 </div>
               </div>
-            </div>
-          ))}
-        </section>
-        <div>
-          <button
-            className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            onClick={handleHauntAddNavigate}
-          >
-            Read about this ghost's experience
-          </button>
+            ))}
+          </div>
         </div>
       </div>
     </>

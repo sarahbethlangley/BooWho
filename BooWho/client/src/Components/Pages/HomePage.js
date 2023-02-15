@@ -41,6 +41,10 @@ export default function HomePage() {
     navigate("/boowho");
   };
 
+  const handleSocial = () => {
+    navigate("/list");
+  };
+
   return (
     <>
       <div className="isolate bg-spooky">
@@ -244,7 +248,7 @@ export default function HomePage() {
                   Start A Haunt
                 </button>
                 <button
-                  onClick={handleUserProfileListNavigate}
+                  onClick={handleSocial}
                   className="inline-block rounded-md border border-transparent bg-indigo-600 py-3 px-8 text-center font-medium text-white hover:bg-indigo-700"
                 >
                   Make Friends

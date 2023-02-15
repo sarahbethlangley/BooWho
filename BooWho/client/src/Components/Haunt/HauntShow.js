@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { getHauntDetails } from "../../modules/hauntManager";
+
 import { logout } from "../../modules/authManager";
 
 const navigation = [
@@ -143,29 +144,28 @@ const HauntShow = () => {
             </div>
           </nav>
 
-          <div className="pt-16 object-position: center">
+          <div className="flex min-h-full items-center justify-between py-12 px-4">
             <img
-              className="h-auto w-auto object-top-left"
+              className="h-auto w-auto object-center"
               src={haunt?.userProfile?.imageUrl}
               alt="loving ghost"
             />
             <img
-              className="h-auto w-auto object-right-top"
+              className="h-auto w-auto object-center"
               src={haunt?.house?.imageUrl}
               alt="loving ghost"
             />
             <p className="mt-4 text-left text-xl text-gray-300">
               {haunt?.house?.address}
             </p>
-            <h1>{haunt?.userProfile?.name}'s Haunt Experience</h1>
+            <h1 className="font-cutive font-bold text-center text-yellow-500">
+              {haunt?.userProfile?.name}'s Haunt Experience
+            </h1>
             <p className="mt-4 text-left text-xl text-gray-300">
               {haunt.notes}
             </p>
-            <Link to={`/haunt/edit/${haunt.id}`}>
-              <button
-                className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                onClick={handleEditNavigate}
-              >
+            <Link to={`/haunt/edit/${id}`}>
+              <button className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 edit your experience
               </button>
             </Link>
