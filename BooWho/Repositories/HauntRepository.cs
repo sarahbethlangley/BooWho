@@ -170,10 +170,10 @@ namespace BooWho.Repositories
                 {
                     cmd.CommandText = @"
                         UPDATE Haunt
-                           SET UserProfileId = @UserProfileId
-                               HouseId = @Address,
-                               Notes = @Notes,
-                               ImageUrl = @ImageUrl,
+                           SET UserProfileId = @UserProfileId,
+                               HouseId = @HouseId,
+                               Notes = @Notes
+                               
                             
                          WHERE Id = @id";
 
@@ -233,12 +233,12 @@ namespace BooWho.Repositories
                 {
                     Type = DbUtils.GetString(reader, "UserTypeType"),
                 },
-                GhostTypeId = DbUtils.GetInt(reader, "GhostTypeId"),
-                GhostType = new GhostType
+                GhostTypeId = DbUtils.GetNullableInt(reader, "GhostTypeId"),
+                GhostType = !DbUtils.IsDbNull(reader, "GhostTypeId") ? new GhostType()
                 {
-
+                    Id = DbUtils.GetInt(reader, "GhostTypeId"),
                     Type = DbUtils.GetString(reader, "GhostTypeType"),
-                },
+                } : null,
                 
                 Notes = DbUtils.GetString(reader, "HauntNotes")
 

@@ -10,7 +10,7 @@ namespace BooWho.Models
         [StringLength(28, MinimumLength = 28)]
         public string FirebaseUserId { get; set; }
         public int UserTypeId { get; set; }
-        public int GhostTypeId { get; set; }
+        public int? GhostTypeId { get; set; }
         public string Email { get; set; }
         public string ImageUrl { get; set; }
         public string Name { get; set; }

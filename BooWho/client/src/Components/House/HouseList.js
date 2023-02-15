@@ -6,8 +6,8 @@ import { logout } from "../../modules/authManager";
 
 const navigation = [
   { nameOne: "Haunt Reviews" },
-  { nameTwo: "Available Houses" },
-  { nameThree: "The Living and the Dead" },
+  { nameTwo: "Haunted Houses" },
+  { nameThree: "The Living" },
   { nameFour: "Home" },
 ];
 
@@ -33,7 +33,7 @@ export default function HouseList() {
   };
 
   const handleHomeNavigate = () => {
-    navigate("/boowho");
+    navigate("/boohome");
   };
 
   const handleHauntAddNavigate = () => {
