@@ -4,10 +4,10 @@ import { getHouseById } from "../../modules/houseManager";
 import { logout } from "../../modules/authManager";
 
 const navigation = [
-  { nameOne: "Haunt Reviews" },
-  { nameTwo: "Available Houses" },
-  { nameThree: "Living and Deceased" },
-  { nameFour: "Home" },
+  { nameOne: "BooHome" },
+  { nameTwo: "Haunt Reviews" },
+  { nameThree: "Available Houses" },
+  { nameFour: "Make Friends" },
 ];
 
 const HouseShow = () => {
@@ -32,15 +32,11 @@ const HouseShow = () => {
   };
 
   const handleHomeNavigate = () => {
-    navigate("/boowho");
+    navigate("/boohome");
   };
 
   const handleHauntAddNavigate = () => {
-    navigate(`/haunt/add/${id}`);
-  };
-
-  const handleEditNavigate = () => {
-    navigate(`/haunt/edit/${id}`);
+    navigate("/haunt/add");
   };
 
   const handleUserProfileListNavigate = () => {
@@ -49,7 +45,6 @@ const HouseShow = () => {
 
   const logoutSubmit = () => {
     logout();
-
     navigate("/boowho");
   };
 
@@ -152,11 +147,13 @@ const HouseShow = () => {
             {house.address}
           </p>
           <p className="mt-4 text-left text-xl text-gray-300">{house.notes}</p>
-          <Link to={`/house/edit/${id}`}>
-            <button className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-              edit this house
-            </button>
-          </Link>
+
+          <button
+            className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            onClick={{ handleHauntAddNavigate }}
+          >
+            book a this house
+          </button>
         </div>
       </div>
     </>
@@ -164,56 +161,3 @@ const HouseShow = () => {
 };
 
 export default HouseShow;
-
-// import React, { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
-// import { getHouseById } from "../../modules/houseManager";
-
-// export default function HouseShow(evt) {
-//   const [house, setHouse] = useState([]);
-
-//   const houseId = parseInt(localStorage.getItem("showHouseId"));
-
-//   const getHouse = (evt) => {
-//     let hacienda = getHouseById(houseId);
-//     console.log(hacienda);
-//     setHouse(hacienda);
-//   };
-
-//   useEffect(() => {
-//     getHouse();
-//   }, []);
-
-//   return (
-//     <>
-//       <div className="pt-16">
-//         <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-//           <div className="md:flex">
-//             <div className="md:shrink-0">
-//               <img
-//                 className="h-48 w-full object-cover md:h-full md:w-48"
-//                 src={house.imageUrl}
-//                 alt="house"
-//               />
-//             </div>
-//             <div className="p-8">
-//               <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-//                 {house.address}
-//               </div>
-//               <div className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-//                 {house.notes}
-//               </div>
-//               <p className="mt-2 text-slate-500">check it out</p>
-//               {/* <button
-//               className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-//               onClick={handleShowHouseByDetails(house.id)}
-//             >
-//               Show details
-//             </button> */}
-//             </div>
-//           </div>
-//         </div>
-//       </div>
-//     </>
-//   );
-// }

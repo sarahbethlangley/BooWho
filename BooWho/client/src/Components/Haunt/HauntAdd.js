@@ -6,10 +6,10 @@ import { LockClosedIcon } from "@heroicons/react/20/solid";
 import { logout } from "../../modules/authManager";
 
 const navigation = [
-  { nameOne: "Haunt Reviews" },
-  { nameTwo: "Available Houses" },
-  { nameThree: "Living and Deceased" },
-  { nameFour: "Home" },
+  { nameOne: "BooHome" },
+  { nameTwo: "Haunt Reviews" },
+  { nameThree: "Available Houses" },
+  { nameFour: "Make Friends" },
 ];
 
 export default function HauntAdd() {
@@ -54,15 +54,15 @@ export default function HauntAdd() {
 
   const logoutSubmit = () => {
     logout();
+    navigate("/boowho");
   };
 
-  const handleHomeNavigate = () => {
+  const handleNavigate = () => {
     navigate("/boohome");
   };
 
   return (
     <>
-      <h1>you made it to the add page</h1>
       <div className="isolate bg-spooky">
         <div className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]">
           <svg
@@ -110,28 +110,28 @@ export default function HauntAdd() {
                 <div key={index}>
                   <button
                     key={item.nameOne}
-                    onClick={handleHauntListNavigate}
+                    onClick={handleNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameOne}
                   </button>
                   <button
                     key={item.nameTwo}
-                    onClick={handleHouseListNavigate}
+                    onClick={handleHauntListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameTwo}
                   </button>
                   <button
                     key={item.nameThree}
-                    onClick={handleUserProfileListNavigate}
+                    onClick={handleHouseListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameThree}
                   </button>
                   <button
                     key={item.nameFour}
-                    onClick={handleHomeNavigate}
+                    onClick={handleUserProfileListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameFour}
@@ -156,58 +156,121 @@ export default function HauntAdd() {
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="-space-y-px rounded-md shadow-sm">
             <div>
-              <h1>
-                Review your Haunt and let other's know about your experience
-              </h1>
-
-              <label htmlFor="address">Choose A House To Haunt</label>
-              <select
-                id="address"
-                name="houseId"
-                value={userInput.houseId}
-                onChange={(event) => {
-                  const home = { ...userInput };
-                  home.houseId = parseInt(event.target.value);
-                  setUserInput(home);
-                }}
-              >
-                <option value={0}>Haunt Locations</option>
-                {houses.map((hh) => (
-                  <option key={hh.id} value={hh.id}>
-                    {hh.address}
-                  </option>
-                ))}
-              </select>
-
-              <label htmlFor="notes" className="sr-only">
-                Help other ghosts decide...
-              </label>
-              <input
-                id="notes"
-                type="textarea"
-                name="notes"
-                value={userInput.notes}
-                className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                placeholder="why did you chose this home?"
-                onChange={handleUserInput}
-              />
+              <div className="relative px-6 lg:px-8">
+                <div className="pb-36 mx-auto max-w-2xl py-32 float-left">
+                  <div>
+                    <h1 className="mr-16 text-center text-4xl font-fijole leading-8 text-white sm:text-6xl">
+                      Book a Haunt {"  "}
+                    </h1>
+                    <p className="mr-16 mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-400">
+                      Here is where you book your Haunt.
+                    </p>
+                    <p className="mr-16 mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-400">
+                      Did you know...? Ghosts can edit their Haunt experiences
+                    </p>
+                    <p className="mr-16 mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-400">
+                      Choose a house below and then tell us what you're most
+                      excited for
+                    </p>
+                    <button
+                      className="pt-4 text-lg font-cutive leading-6 text-yellow-500"
+                      onClick={handleHouseListNavigate}
+                    >
+                      {" "}
+                      Or checkout our houses, ready to Haunt
+                      <span aria-hidden="true">&rarr;</span>
+                    </button>
+                    <h2 className="pt-8 mr-56 text-center text-2xl font-fijole leading-8 text-yellow-500">
+                      Choose A House To Haunt
+                    </h2>
+                    <select
+                      className="ml-48 absolute center-0 z-10 mt-2 w-56 origin-center rounded-lg bg-white shadow-4xl ring-5 ring-black ring-opacity-5 focus:outline-none"
+                      id="address"
+                      name="houseId"
+                      value={userInput.houseId}
+                      onChange={(event) => {
+                        const home = { ...userInput };
+                        home.houseId = parseInt(event.target.value);
+                        setUserInput(home);
+                      }}
+                    >
+                      <option value={0}>Haunt Locations</option>
+                      {houses.map((hh) => (
+                        <option key={hh.id} value={hh.id}>
+                          {hh.address}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div></div>
+            <div className="mx-auto max-w-7xl pb-8 pt-24">
+              <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+                <svg
+                  viewBox="0 0 1024 1024"
+                  className="absolute top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:translate-y-0 lg:-translate-x-1/2"
+                  aria-hidden="true"
+                >
+                  <circle
+                    cx={512}
+                    cy={512}
+                    r={512}
+                    fill="url(#759c1415-0410-454c-8f7c-9a820de03641)"
+                    fillOpacity="0.7"
+                  />
+                  <defs>
+                    <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
+                      <stop stopColor="#7775D6" />
+                      <stop offset={1} stopColor="#E935C1" />
+                    </radialGradient>
+                  </defs>
+                </svg>
+                <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+                  <h2 className="text-3xl font-frijole tracking-tight text-yellow-500">
+                    What are you most looking forward to?
+                    <br />
+                  </h2>
+                  <p className="mt-6 text-xl leading-8 text-gray-300">
+                    <input
+                      id="notes"
+                      type="textarea"
+                      name="notes"
+                      value={userInput.notes}
+                      className="relative block w-full appearance-none rounded-t-md rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500"
+                      placeholder="Why did you choose this Haunt?"
+                      onChange={handleUserInput}
+                    />
+                  </p>
+                  <div>
+                    <button
+                      type="submit"
+                      className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                      onClick={handleAddHaunt}
+                    >
+                      <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+                        <LockClosedIcon
+                          className="h-5 w-5 text-pow group-hover:text-indigo-400"
+                          aria-hidden="true"
+                        />
+                      </span>
+                      Click here to register your Haunt
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div>
-            <button
-              type="submit"
-              className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-              onClick={handleAddHaunt}
-            >
-              <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-                <LockClosedIcon
-                  className="h-5 w-5 text-pow group-hover:text-indigo-400"
-                  aria-hidden="true"
-                />
-              </span>
-              Click here to register your Haunt
-            </button>
+          <div className=" mr-16 pb-16 flex items-center justify-center">
+            <img
+              className="float-right mr-24 h-auto w-auto object-center"
+              src={require("../../assetts/plant.gif")}
+              alt="loving ghost"
+            />
+            <h5 className="text-center pl-4 text-3xl font-frijole tracking-tight text-yellow-500">
+              Get ready to haunt a home
+            </h5>
           </div>
         </form>
       </div>

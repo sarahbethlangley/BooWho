@@ -5,10 +5,10 @@ import { getHauntDetails } from "../../modules/hauntManager";
 import { logout } from "../../modules/authManager";
 
 const navigation = [
-  { nameOne: "Haunt Reviews" },
-  { nameTwo: "Available Houses" },
-  { nameThree: "Living and Deceased" },
-  { nameFour: "Home" },
+  { nameOne: "BooHome" },
+  { nameTwo: "Haunt Reviews" },
+  { nameThree: "Available Houses" },
+  { nameFour: "Make Friends" },
 ];
 
 const HauntShow = () => {
@@ -103,28 +103,28 @@ const HauntShow = () => {
                 <div key={index}>
                   <button
                     key={item.nameOne}
-                    onClick={handleHauntListNavigate}
+                    onClick={handleHomeNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameOne}
                   </button>
                   <button
                     key={item.nameTwo}
-                    onClick={handleHouseListNavigate}
+                    onClick={handleHauntListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameTwo}
                   </button>
                   <button
                     key={item.nameThree}
-                    onClick={handleUserProfileListNavigate}
+                    onClick={handleHouseListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameThree}
                   </button>
                   <button
                     key={item.nameFour}
-                    onClick={handleHomeNavigate}
+                    onClick={handleUserProfileListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameFour}
@@ -143,32 +143,63 @@ const HauntShow = () => {
               </button>
             </div>
           </nav>
-
-          <div className="flex min-h-full items-center justify-between py-12 px-4">
-            <img
-              className="h-auto w-auto object-center"
-              src={haunt?.userProfile?.imageUrl}
-              alt="loving ghost"
-            />
-            <img
-              className="h-auto w-auto object-center"
-              src={haunt?.house?.imageUrl}
-              alt="loving ghost"
-            />
-            <p className="mt-4 text-left text-xl text-gray-300">
-              {haunt?.house?.address}
-            </p>
-            <h1 className="font-cutive font-bold text-center text-yellow-500">
-              {haunt?.userProfile?.name}'s Haunt Experience
+          <div>
+            <h1 className="pt-16 font-frijole font-bold capitalize text-center text-white">
+              The Haunting Experience Of
             </h1>
-            <p className="mt-4 text-left text-xl text-gray-300">
-              {haunt.notes}
-            </p>
-            <Link to={`/haunt/edit/${id}`}>
-              <button className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                edit your experience
-              </button>
-            </Link>
+            <h1 className="font-cutive font-bold capitalize text-center text-white">
+              {haunt?.house?.address}
+            </h1>
+          </div>
+          <div className="mx-auto max-w-7xl py-24">
+            <div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
+              <svg
+                viewBox="0 0 1024 1024"
+                className="absolute top-1/2 left-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:translate-y-0 lg:-translate-x-1/2"
+                aria-hidden="true"
+              >
+                <circle
+                  cx={512}
+                  cy={512}
+                  r={512}
+                  fill="url(#759c1415-0410-454c-8f7c-9a820de03641)"
+                  fillOpacity="0.7"
+                />
+                <defs>
+                  <radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">
+                    <stop stopColor="#7775D6" />
+                    <stop offset={1} stopColor="#E935C1" />
+                  </radialGradient>
+                </defs>
+              </svg>
+              <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
+                <h2 className="text-3xl font-frijole tracking-tight text-yellow-500">
+                  {haunt?.userProfile?.name}'s
+                  <br />
+                  Review
+                </h2>
+                <p className="mt-6 text-xl leading-8 text-gray-300">
+                  {haunt.notes}
+                </p>
+                <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
+                  <img
+                    className="h-auto w-auto object-center"
+                    src={haunt?.userProfile?.imageUrl}
+                    alt="loving ghost"
+                  />
+                  <img
+                    className="h-auto w-auto object-center"
+                    src={haunt?.house?.imageUrl}
+                    alt="loving ghost"
+                  />
+                </div>
+                <Link to={`/haunt/edit/${id}`}>
+                  <button className="pt-10 text-lg font-cutive leading-6 text-yeller">
+                    edit your experience
+                  </button>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>
