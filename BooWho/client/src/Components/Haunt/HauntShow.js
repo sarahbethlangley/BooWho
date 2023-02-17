@@ -144,10 +144,10 @@ const HauntShow = () => {
             </div>
           </nav>
           <div>
-            <h1 className="pt-16 font-frijole font-bold capitalize text-center text-white">
+            <h1 className="pt-24 font-cutive font-bold capitalize text-center text-yellow-500">
               The Haunting Experience Of
             </h1>
-            <h1 className="font-cutive font-bold capitalize text-center text-white">
+            <h1 className="font-frijole font-bold capitalize text-center text-white">
               {haunt?.house?.address}
             </h1>
           </div>

@@ -144,11 +144,11 @@ export default function HauntList() {
               <h1 className="mr-16 text-center text-4xl font-fijole leading-8 text-white sm:text-6xl">
                 Read About A Haunt Before You Book Your Own{"  "}
               </h1>
-              <p className="mr-16 mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-400">
+              <p className="mr-16 mt-6 text-center text-2xl font-bold font-cutive leading-8 text-gray-400">
                 Read about the experiences of the paranormal with BooWho?!'s
                 Haunts.{" "}
               </p>
-              <p className="mr-16 mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-400">
+              <p className="mr-16 mt-6 text-center text-2xl font-bold font-cutive leading-8 text-gray-400">
                 Ghosts who booked a Haunt through BooWho?! are guarenteed no
                 sage, salt circles, or exorcisms.{" "}
               </p>
@@ -156,7 +156,7 @@ export default function HauntList() {
                 Just click on a Ghost and see where they Haunt!{" "}
               </h3>
               <button
-                className="pt-10 text-lg font-cutive leading-6 text-yeller"
+                className="pt-10 text-lg text-center font-cutive leading-6 text-yeller"
                 onClick={handleHauntAddNavigate}
               >
                 {" "}
