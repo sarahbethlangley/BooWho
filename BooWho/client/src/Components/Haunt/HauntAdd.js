@@ -166,11 +166,11 @@ export default function HauntAdd() {
                       Here is where you book your Haunt.
                     </p>
                     <p className="mr-16 mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-400">
-                      Did you know...? Ghosts can edit their Haunt experiences
+                      Did you know...? Ghosts can edit their Haunt experiences.
                     </p>
                     <p className="mr-16 mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-400">
                       Choose a house below and then tell us what you're most
-                      excited for
+                      excited for!
                     </p>
                     <button
                       className="pt-4 text-lg font-cutive leading-6 text-yellow-500"
@@ -180,7 +180,7 @@ export default function HauntAdd() {
                       Or checkout our houses, ready to Haunt
                       <span aria-hidden="true">&rarr;</span>
                     </button>
-                    <h2 className="pt-8 mr-56 text-center text-2xl font-fijole leading-8 text-yellow-500">
+                    <h2 className="pt-8 mr-16 text-center text-2xl font-fijole leading-8 text-yellow-500">
                       Choose A House To Haunt
                     </h2>
                     <select

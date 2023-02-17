@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { getHouseById } from "../../modules/houseManager";
+import { getUserProfileDetails } from "../../modules/userProfileManager";
 import { logout } from "../../modules/authManager";
 
 const navigation = [
@@ -10,16 +10,16 @@ const navigation = [
   { nameFour: "Make Friends" },
 ];
 
-const HouseShow = () => {
-  const [house, setHouse] = useState({});
+const ProfileShow = () => {
+  const [profile, setProfile] = useState({});
   const { id } = useParams();
 
-  const getHouse = (id) => {
-    getHouseById(id).then((house) => setHouse(house));
+  const getProfile = (id) => {
+    getUserProfileDetails(id).then((profile) => setProfile(profile));
   };
 
   useEffect(() => {
-    getHouse(id);
+    getProfile(id);
   }, []);
 
   const navigate = useNavigate();
@@ -161,23 +161,23 @@ const HouseShow = () => {
               </svg>
               <div className="mx-auto max-w-md text-center lg:mx-0 lg:flex-auto lg:py-32 lg:text-left">
                 <h2 className="text-3xl font-frijole capitalize tracking-tight text-yellow-500">
-                  {house.address}
+                  Uh Oh! Not even we can raise this dead end!
                   <br />
                 </h2>
 
                 <div className="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
                   <img
                     className="h-auto w-auto object-center"
-                    src={house.imageUrl}
+                    src={require("../../assetts/socute.gif")}
                     alt="loving ghost"
                   />
                   <p className="mt-6 text-xl leading-8 text-gray-300">
-                    {house.notes}
+                    {profile.hobbies}
                   </p>
                 </div>
-                <Link to={"/haunt/add"}>
+                <Link to={"/haunt"}>
                   <button className="pt-10 text-lg font-cutive leading-6 text-yeller">
-                    Haunt this house
+                    Better get back to Hauntin'
                   </button>
                 </Link>
               </div>
@@ -189,4 +189,4 @@ const HouseShow = () => {
   );
 };
 
-export default HouseShow;
+export default ProfileShow;

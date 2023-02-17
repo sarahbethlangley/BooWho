@@ -45,7 +45,7 @@ namespace BooWho.Controllers
             return Ok();
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("profile/{id}")]
         public IActionResult Put(int id, UserProfile profile)
         {
             if (id != profile.Id)

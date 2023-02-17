@@ -6,7 +6,7 @@ import HauntEdit from "./Haunt/HauntEdit";
 import HouseList from "./House/HouseList";
 import HouseShow from "./House/HouseShow";
 import UserProfileList from "./UserProfile/UserProfileList";
-import UserCard from "./UserProfile/UserCard";
+import UserProfileShow from "./UserProfile/UserProfileShow";
 import HomePage from "./Pages/HomePage";
 import HeroPage from "./Pages/HeroPage";
 import Login from "./Auth/Login";
@@ -29,7 +29,7 @@ export default function ApplicationViews({ isLoggedIn }) {
         <Route path="haunt/edit/:id" element={<HauntEdit />} />
         <Route path="haunt/add" element={<HauntAdd />} />
         <Route path="userProfile" element={<UserProfileList />} />
-        <Route path="userProfile/meet/:id" element={<UserCard />} />
+        <Route path="userProfile/profile/:id" element={<UserProfileShow />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="*" element={<p>Whoops, nothing here...</p>} />

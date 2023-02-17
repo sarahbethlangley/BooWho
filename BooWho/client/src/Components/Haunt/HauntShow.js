@@ -198,6 +198,11 @@ const HauntShow = () => {
                     edit your experience
                   </button>
                 </Link>
+                <Link to={`/haunt`}>
+                  <button className="pt-10 text-lg font-cutive leading-6 text-yeller">
+                    or head back to Haunt reviews
+                  </button>
+                </Link>
               </div>
             </div>
           </div>
