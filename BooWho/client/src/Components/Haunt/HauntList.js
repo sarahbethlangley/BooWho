@@ -4,10 +4,10 @@ import { getAllHaunts } from "../../modules/hauntManager";
 import { logout } from "../../modules/authManager";
 
 const navigation = [
-  { nameOne: "Haunt Reviews" },
-  { nameTwo: "Available Houses" },
-  { nameThree: "Living and Deceased" },
-  { nameFour: "Home" },
+  { nameOne: "BooHome" },
+  { nameTwo: "Haunt Reviews" },
+  { nameThree: "Available Houses" },
+  { nameFour: "Make Friends" },
 ];
 
 export default function HauntList() {
@@ -32,7 +32,7 @@ export default function HauntList() {
   };
 
   const handleHauntAddNavigate = () => {
-    navigate(`/haunt/add/${id}`);
+    navigate("/haunt/add");
   };
 
   const handleUserProfileListNavigate = () => {
@@ -41,11 +41,10 @@ export default function HauntList() {
 
   const logoutSubmit = () => {
     logout();
-
     navigate("/boowho");
   };
 
-  const handleHomeNavigate = () => {
+  const handleNavigate = () => {
     navigate("/boohome");
   };
 
@@ -98,28 +97,28 @@ export default function HauntList() {
                 <div key={index}>
                   <button
                     key={item.nameOne}
-                    onClick={handleHauntListNavigate}
+                    onClick={handleNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameOne}
                   </button>
                   <button
                     key={item.nameTwo}
-                    onClick={handleHouseListNavigate}
+                    onClick={handleHauntListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameTwo}
                   </button>
                   <button
                     key={item.nameThree}
-                    onClick={handleUserProfileListNavigate}
+                    onClick={handleHouseListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameThree}
                   </button>
                   <button
                     key={item.nameFour}
-                    onClick={handleHomeNavigate}
+                    onClick={handleUserProfileListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameFour}
@@ -147,10 +146,15 @@ export default function HauntList() {
               </h1>
               <p className="mr-16 mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-400">
                 Read about the experiences of the paranormal with BooWho?!'s
-                Haunts. Spooks who booked a Haunt through BooWho?! are
-                guarenteed no exorcisms or salt circles, and you can cancel your
-                Haunt at anytime.
+                Haunts.{" "}
               </p>
+              <p className="mr-16 mt-6 text-left text-2xl font-bold font-cutive leading-8 text-gray-400">
+                Ghosts who booked a Haunt through BooWho?! are guarenteed no
+                sage, salt circles, or exorcisms.{" "}
+              </p>
+              <h3 className="mr-16 mt-6 text-center text-2xl font-bold font-cutive leading-8 text-yellow-500">
+                Just click on a Ghost and see where they Haunt!{" "}
+              </h3>
               <button
                 className="pt-10 text-lg font-cutive leading-6 text-yeller"
                 onClick={handleHauntAddNavigate}
@@ -161,7 +165,6 @@ export default function HauntList() {
               </button>
             </div>
           </div>
-
           <div className="pt-36 bg-smoke grid xl:grid-cols-4 gap-8">
             {haunts.map((hh) => (
               <div key={hh.id}>
@@ -174,16 +177,12 @@ export default function HauntList() {
                     />
                   </Link>
 
-                  <h1 class="mt-4 text-2xl font-frijole text-white capitalize group-hover:text-yellow-500">
+                  <h1 class="mt-4 text-2xl font-frijole text-yellow-500 text-center capitalize group-hover:text-yellow-500">
                     {hh?.userProfile?.name}
                   </h1>
                   <p class="text-md font-frijole text-white group-hover:text-yellow-500">
                     {hh?.ghostType?.type}
                   </p>
-                  <p className="text-md font-frijole text-white group-hover:text-yellow-500"></p>
-                  <h4 class="mt-2 text-lg font-frijole text-white capitalize group-hover:text-yellow-500">
-                    {hh?.house?.address}
-                  </h4>
                 </div>
               </div>
             ))}

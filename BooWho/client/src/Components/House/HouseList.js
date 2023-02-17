@@ -5,10 +5,10 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { logout } from "../../modules/authManager";
 
 const navigation = [
-  { nameOne: "Haunt Reviews" },
-  { nameTwo: "Haunted Houses" },
-  { nameThree: "The Living" },
-  { nameFour: "Home" },
+  { nameOne: "BooHome" },
+  { nameTwo: "Haunt Reviews" },
+  { nameThree: "Available Houses" },
+  { nameFour: "Make Friends" },
 ];
 
 export default function HouseList() {
@@ -32,12 +32,12 @@ export default function HouseList() {
     navigate("/haunt");
   };
 
-  const handleHomeNavigate = () => {
+  const handleNavigate = () => {
     navigate("/boohome");
   };
 
   const handleHauntAddNavigate = () => {
-    navigate(`/haunt/add/${hauntId}`);
+    navigate("/haunt/add");
   };
 
   const handleUserProfileListNavigate = () => {
@@ -99,28 +99,28 @@ export default function HouseList() {
                 <div key={index}>
                   <button
                     key={item.nameOne}
-                    onClick={handleHauntListNavigate}
+                    onClick={handleNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameOne}
                   </button>
                   <button
                     key={item.nameTwo}
-                    onClick={handleHouseListNavigate}
+                    onClick={handleHauntListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameTwo}
                   </button>
                   <button
                     key={item.nameThree}
-                    onClick={handleUserProfileListNavigate}
+                    onClick={handleHouseListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameThree}
                   </button>
                   <button
                     key={item.nameFour}
-                    onClick={handleHomeNavigate}
+                    onClick={handleUserProfileListNavigate}
                     className="text-lg font-cutive leading-6 text-yeller"
                   >
                     {item.nameFour}
@@ -163,35 +163,32 @@ export default function HouseList() {
             </div>
           </div>
           <section>
-            {houses.map((h) => (
-              <div key={h.id} className="pt-16">
-                <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl">
-                  <div className="md:flex">
-                    <div className="md:shrink-0">
+            <div className="pt-36 bg-smoke grid xl:grid-cols-4 gap-8">
+              {houses.map((hh) => (
+                <div key={hh.id}>
+                  <div class="flex flex-col items-center p-8 transition-colors duration-200 transform cursor-pointer group hover:bg-smoke rounded-xl">
+                    <Link to={`/house/detail/${hh.id}`}>
                       <img
-                        className="h-48 w-full object-cover md:h-full md:w-48"
-                        src={h.imageUrl}
-                        alt="house"
+                        class="object-cover w-32 h-32 rounded-full ring-4 bg-white ring-gray-300"
+                        src={hh.imageUrl}
+                        alt="ghost"
                       />
-                    </div>
-                    <div className="p-8">
-                      <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                        {h.address}
-                      </div>
-                      <div className="block mt-1 text-lg leading-tight font-medium text-black hover:underline">
-                        {h.notes}
-                      </div>
-                      <p className="mt-2 text-slate-500">check it out</p>
-                      <Link to={`/house/detail/${h.id}`}>
-                        <button className="rounded-md bg-indigo-600 px-3.5 py-1.5 text-lg.no-underline font-frijole leading-7 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                          book now
-                        </button>
-                      </Link>
-                    </div>
+                    </Link>
+
+                    <h1 class="mt-4 text-2xl font-frijole text-yellow-500 text-center capitalize group-hover:text-yellow-500">
+                      {hh.address}
+                    </h1>
+                    <p class="text-md font-frijole text-white group-hover:text-yellow-500">
+                      {hh?.userProfile?.name}
+                    </p>
+                    {/* <p className="text-md font-frijole text-white group-hover:text-yellow-500"></p>
+                  <h4 class="mt-2 text-lg font-frijole text-white capitalize group-hover:text-yellow-500">
+                    {hh?.house?.address}
+                  </h4> */}
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </section>
         </div>
       </div>

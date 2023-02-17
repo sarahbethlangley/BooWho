@@ -25,7 +25,7 @@ export default function Register() {
       alert("Passwords don't match. Do better.");
     } else {
       const userProfile = { name, email };
-      register(userProfile, password).then(() => navigate("/"));
+      register(userProfile, password).then(() => navigate("/boohome"));
     }
   };
 
@@ -94,7 +94,7 @@ export default function Register() {
                 </div>
               </p>
             </div>
-            <form className="mt-8 space-y-6" action="#" method="POST">
+            <form className="mt-8 space-y-6" method="POST">
               <input type="hidden" name="remember" defaultValue="true" />
               <div className="-space-y-px rounded-md shadow-sm">
                 <div className="pt-3">

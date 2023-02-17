@@ -10,9 +10,9 @@ import {
 } from "@heroicons/react/24/outline";
 
 const navigation = [
-  { name: "Who To Boo?", href: "#" },
-  { name: "How To Boo It", href: "#" },
-  { name: "What To Boo Now", href: "#" },
+  { name: "", href: "#" },
+  { name: "We Know Who To Boo!", href: "#" },
+  { name: "", href: "#" },
 ];
 
 const features = [
@@ -213,7 +213,7 @@ export default function HeroPage() {
             <p className="mt-6 text-left text-xl leading-8 text-gray-600">
               Everyday more spooks, ghouls, ghosts, and spirits are facing
               mounting homelessness in our community. At BooWho?!, we strive to
-              protect housing rights for the paranomral by connecting them with
+              protect housing rights for the paranormal by connecting them with
               the right house and the right living people to share their homes,
               lives, - and afterlives - with
             </p>
