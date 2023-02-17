@@ -157,7 +157,7 @@ export default function UserProfileList() {
               {users.map((u) => (
                 <div key={u.id}>
                   <div class="flex flex-col items-center p-8 transition-colors duration-200 transform cursor-pointer group hover:bg-smoke rounded-xl">
-                    <Link to={`/userProfile/meet/${u.id}`}>
+                    <Link to={`/userProfile/profile/${u.id}`}>
                       <img
                         class="object-cover w-32 h-32 rounded-full ring-4 bg-white ring-gray-300"
                         src={u.imageUrl}
@@ -175,29 +175,6 @@ export default function UserProfileList() {
                 </div>
               ))}
             </div>
-            {users.map((u) => (
-              <div key={u.id} className="pt-16">
-                <div className="max-w-md mx-auto float-right bg-white rounded-xl shadow-md md:max-w-2xl">
-                  <div className="md:flex">
-                    <div className="md:shrink-0">
-                      <img
-                        className="h-48 w-full object-cover md:h-full md:w-48"
-                        src={u.imageUrl}
-                        alt="house"
-                      />
-                    </div>
-                    <div class="p-8">
-                      <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
-                        {u.name}
-                        {"  "}
-                        {u?.userType?.type}
-                      </div>
-                      <div className="block mt-1 text-lg leading-tight font-medium text-black hover:underline"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>
